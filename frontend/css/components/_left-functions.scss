@@ -1,0 +1,28 @@
+.left-side-bar__mid__function {
+  width: 100%;
+  height: auto;
+
+  margin: 1em auto;
+  padding: 1em 1em 1em 2em;
+
+  &--active {
+    background-color: $main-purple;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+
+  @include flexbox($justify: flex-start);
+
+  &__logo {
+    width: 50px;
+    height: auto;
+  }
+
+  &__name {
+    margin: auto 1em;
+
+    &--active {
+      color: $white-purple;
+    }
+  }
+}

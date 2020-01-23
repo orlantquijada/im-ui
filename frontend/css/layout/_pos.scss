@@ -1,0 +1,6 @@
+.site {
+  height: 100vh;
+  width: auto;
+
+  @include flexbox;
+}
