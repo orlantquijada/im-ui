@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,YAAY,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;CAQnB;;AAPC,AAAD,uBAAY,CAAC;EACZ,OAAO,EAAE,IAAI;CAKb;;AAHC,AAAD,mCAAa,CAAC;EACb,OAAO,EAAE,YAAY;CACrB;;AAIH,AAAA,MAAM,CAAC;EACN,MAAM,EAAE,SAAS;EACjB,MAAM,EAAE,GAAG;CACX;;AAED,AAAA,UAAU,CAAC;EACV,MAAM,EAAE,IAAI;CACZ",
+    "sources": [
+        "main.scss",
+        "pages/_pos.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}

@@ -1,0 +1,27 @@
+.pos-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.pos-content__left-side {
+  padding: 20px;
+}
+
+.pos-content__left-side__search-box {
+  padding: 0px 0px 50px;
+}
+
+.table {
+  border: 1px black;
+  height: 70%;
+}
+
+.wala-lang {
+  height: 25vh;
+}
+/*# sourceMappingURL=main.css.map */
