@@ -1,20 +1,88 @@
 .pos-content {
 	display: flex;
 	flex-direction: row;
-	&__left-side {
-		padding: 20px;
 
-		&__search-box {
-			padding: 0px 0px 50px;
+	&__right {
+		display: flex;
+		justify-content: flex-start;
+		flex-direction: column;
+		&__sign {
+			padding: 60px 100px 10px 100px;
+			display: flex;
+			flex-direction: row;
+			&__logo {
+				width: 70px;
+			}
+
+			&__pharmacy-name {
+				padding: 0px 10px;
+			}
+		}
+
+		&__location {
+			font-size: 16px;
+			align-self: center;
+		}
+
+		&__transaction {
+			&__transaction-number {
+				padding-left: 30px;
+				display: flex;
+				flex-direction: row;
+				align-self: baseline;
+			}
+
+			&__teller {
+				padding: 20px 40px;
+				padding-bottom: 30px;
+				display: flex;
+				flex-direction: row;
+				&__picture {
+					border-radius: 50%;
+					width: 75px;
+				}
+				&__info {
+					padding-left: 50px;
+					display: flex;
+					&__name {
+						h5 {
+							font-size: 16px;
+						}
+					}
+					&__position {
+						h6 {
+							font-size: 12px;
+						}
+					}
+				}
+			}
 		}
 	}
 }
 
-.table {
-	border: 1px black;
-	height: 70%;
+.filler {
+	width: 60vw;
+	height: 100vh;
+	background-color: yellow;
 }
 
-.wala-lang {
-	height: 25vh;
+.fillerz {
+	width: 15vw;
+	height: 100vh;
+	background-color: black;
+}
+
+.line {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 2px solid black;
+}
+
+.transaction-no {
+	font-weight: 400;
+}
+
+.h6 {
+	font-size: 16px;
 }

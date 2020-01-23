@@ -8,20 +8,114 @@
           flex-direction: row;
 }
 
-.pos-content__left-side {
-  padding: 20px;
+.pos-content__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.pos-content__left-side__search-box {
-  padding: 0px 0px 50px;
+.pos-content__right__sign {
+  padding: 60px 100px 10px 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-.table {
-  border: 1px black;
-  height: 70%;
+.pos-content__right__sign__logo {
+  width: 70px;
 }
 
-.wala-lang {
-  height: 25vh;
+.pos-content__right__sign__pharmacy-name {
+  padding: 0px 10px;
+}
+
+.pos-content__right__location {
+  font-size: 16px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.pos-content__right__transaction__transaction-number {
+  padding-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+
+.pos-content__right__transaction__teller {
+  padding: 20px 40px;
+  padding-bottom: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.pos-content__right__transaction__teller__picture {
+  border-radius: 50%;
+  width: 75px;
+}
+
+.pos-content__right__transaction__teller__info {
+  padding-left: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pos-content__right__transaction__teller__info__name h5 {
+  font-size: 16px;
+}
+
+.pos-content__right__transaction__teller__info__position h6 {
+  font-size: 12px;
+}
+
+.filler {
+  width: 60vw;
+  height: 100vh;
+  background-color: yellow;
+}
+
+.fillerz {
+  width: 15vw;
+  height: 100vh;
+  background-color: black;
+}
+
+.line {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid black;
+}
+
+.transaction-no {
+  font-weight: 400;
+}
+
+.h6 {
+  font-size: 16px;
 }
 /*# sourceMappingURL=main.css.map */
