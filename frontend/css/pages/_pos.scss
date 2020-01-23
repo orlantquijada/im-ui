@@ -3,19 +3,25 @@
 	flex-direction: row;
 
 	&__right {
+		width: 25vw;
 		display: flex;
 		justify-content: flex-start;
 		flex-direction: column;
 		&__sign {
-			padding: 60px 100px 10px 100px;
+			padding-top: 20px;
+			width: 30%;
+			margin-left: auto;
+			margin-right: auto;
 			display: flex;
 			flex-direction: row;
+			align-items: center;
 			&__logo {
-				width: 70px;
+				width: 50px;
+				height: auto;
 			}
 
 			&__pharmacy-name {
-				padding: 0px 10px;
+				font-size: 25px;
 			}
 		}
 
@@ -25,6 +31,7 @@
 		}
 
 		&__transaction {
+			padding: 20px 0px;
 			&__transaction-number {
 				padding-left: 30px;
 				display: flex;
@@ -33,28 +40,42 @@
 			}
 
 			&__teller {
-				padding: 20px 40px;
-				padding-bottom: 30px;
+				padding: 0 40px 20px;
 				display: flex;
 				flex-direction: row;
 				&__picture {
 					border-radius: 50%;
-					width: 75px;
+					width: 80px;
+					height: 80px;
+					border: 1px solid black;
 				}
 				&__info {
-					padding-left: 50px;
+					padding-left: 20px;
 					display: flex;
+					flex-direction: column;
 					&__name {
-						h5 {
-							font-size: 16px;
-						}
+						margin: 5px 0px;
+						font-size: 24px;
 					}
 					&__position {
-						h6 {
-							font-size: 12px;
-						}
+						font-size: 16px;
 					}
 				}
+			}
+		}
+
+		&__invoice {
+			padding: 20px;
+			&__items {
+				height: 40vh;
+			}
+			&__checkout {
+			}
+			&__total {
+				padding-top: 20px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
 			}
 		}
 	}
@@ -77,6 +98,13 @@
 	margin-left: auto;
 	margin-right: auto;
 	border-top: 2px solid black;
+
+	&--broken {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		border-top: 2px dashed black;
+	}
 }
 
 .transaction-no {
@@ -85,4 +113,12 @@
 
 .h6 {
 	font-size: 16px;
+}
+
+.x-small {
+	font-size: 14px;
+}
+
+.total {
+	font-size: 72px;
 }
