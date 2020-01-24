@@ -308,7 +308,7 @@ ul {
 
 .main .table__header__item.price {
   -ms-grid-row: 1;
-  -ms-grid-column: 6;
+  -ms-grid-column: 3;
   grid-area: price;
 }
 
@@ -395,7 +395,7 @@ ul {
 
 .main .table__body__card__item.price {
   -ms-grid-row: 1;
-  -ms-grid-column: 6;
+  -ms-grid-column: 3;
   grid-area: price;
 }
 
@@ -428,6 +428,294 @@ ul {
   height: 100%;
   width: 490px;
   background-color: #f9fafe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.right-side-bar__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 10%;
+  width: 100%;
+  -webkit-box-flex: 0.5;
+      -ms-flex-positive: 0.5;
+          flex-grow: 0.5;
+}
+
+.right-side-bar__top__pharmacy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.right-side-bar__top__pharmacy__hero {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 2em 1em;
+}
+
+.right-side-bar__top__pharmacy__hero .name {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 72px;
+  color: #444444;
+}
+
+.right-side-bar__top__pharmacy__location {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #666666;
+  margin-bottom: 1em;
+}
+
+.right-side-bar__mid {
+  -webkit-box-flex: 0.5;
+      -ms-flex-positive: 0.5;
+          flex-grow: 0.5;
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.right-side-bar__mid__transaction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: 3em;
+  font-size: 18px;
+  line-height: 36px;
+  color: #444444;
+}
+
+.right-side-bar__mid__transaction .name {
+  margin-right: 1em;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.right-side-bar__mid__clerk {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: 3em;
+}
+
+.right-side-bar__mid__clerk .picture {
+  margin: 1em 1em 1em 0;
+}
+
+.right-side-bar__mid__clerk__hero {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 24px;
+  line-height: 36px;
+  color: #444444;
+}
+
+.right-side-bar__mid__clerk__hero .name {
+  font-style: normal;
+  font-weight: normal;
+}
+
+.right-side-bar__mid__clerk__hero .title {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #666666;
+}
+
+.right-side-bar__bot {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  padding: 0 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.right-side-bar__bot .table {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  row-gap: 1em;
+}
+
+.right-side-bar__bot .table .table__card {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+      grid-template-areas: "name piece price total";
+  -ms-grid-columns: 0.5fr (0.2fr)[3];
+      grid-template-columns: 0.5fr repeat(3, 0.2fr);
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 1em;
+}
+
+.right-side-bar__bot .table .table__card__item {
+  font-size: 14px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.right-side-bar__bot .table .table__card__item.name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: name;
+  justify-self: flex-start;
+}
+
+.right-side-bar__bot .table .table__card__item.piece {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: piece;
+}
+
+.right-side-bar__bot .table .table__card__item.piece h1 {
+  font-style: normal;
+  font-weight: normal;
+}
+
+.right-side-bar__bot .table .table__card__item.price {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: price;
+}
+
+.right-side-bar__bot .table .table__card__item.price h1 {
+  font-style: normal;
+  font-weight: normal;
+}
+
+.right-side-bar__bot .table .table__card__item.total {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: total;
+  justify-self: flex-end;
+}
+
+.line {
+  width: 80%;
+  height: 2px;
+  display: block;
+  margin: 1em 0;
+}
+
+.line--broken {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px dashed black;
 }
 
 .left-side-bar__mid__function {

@@ -3,4 +3,194 @@
   width: 490px;
 
   background-color: #f9fafe;
+
+  @include flexbox($direction: column);
+
+  &__top {
+    @include flexbox($direction: column);
+
+    height: 10%;
+    width: 100%;
+
+    flex-grow: 0.5;
+
+    &__pharmacy {
+      @include flexbox($direction: column);
+
+      &__hero {
+        @include flexbox;
+
+        margin: 2em 1em;
+
+        & .name {
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 48px;
+          line-height: 72px;
+
+          color: #444444;
+        }
+      }
+
+      &__location {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+
+        color: #666666;
+
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  &__mid {
+    flex-grow: 0.5;
+
+    width: 100%;
+    height: auto;
+
+    @include flexbox($direction: column, $align: flex-start);
+
+    &__transaction {
+      @include flexbox($justify: flex-start);
+
+      margin-left: 3em;
+
+      font-size: 18px;
+      line-height: 36px;
+      color: #444444;
+
+      & .name {
+        margin-right: 1em;
+
+        font-style: normal;
+        font-weight: normal;
+      }
+    }
+
+    &__clerk {
+      @include flexbox;
+
+      margin-left: 3em;
+
+      & .picture {
+        margin: 1em 1em 1em 0;
+      }
+
+      &__hero {
+        @include flexbox($align: flex-start, $direction: column);
+
+        font-size: 24px;
+        line-height: 36px;
+
+        color: #444444;
+
+        & .name {
+          font-style: normal;
+          font-weight: normal;
+        }
+
+        & .title {
+          align-self: flex-end;
+
+          font-style: normal;
+          font-weight: normal;
+
+          font-size: 16px;
+          line-height: 24px;
+
+          color: #666666;
+        }
+      }
+    }
+  }
+
+  &__bot {
+    flex-grow: 1;
+
+    width: 100%;
+
+    padding: 0 3em;
+
+    @include flexbox($direction: column, $justify: flex-start);
+
+    & .table {
+      width: 100%;
+
+      display: grid;
+
+      grid-template-rows: auto;
+
+      row-gap: 1em;
+
+      & .table__card {
+        display: grid;
+
+        width: 100%;
+
+        grid-template-areas: "name piece price total";
+        grid-template-columns: 0.5fr repeat(3, 0.2fr);
+
+        justify-items: center;
+        align-items: center;
+
+        row-gap: 1em;
+
+        &__item {
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+
+          &.name {
+            grid-area: name;
+            justify-self: flex-start;
+          }
+          &.piece {
+            grid-area: piece;
+
+            h1 {
+              font-style: normal;
+              font-weight: normal;
+            }
+          }
+          &.price {
+            grid-area: price;
+
+            h1 {
+              font-style: normal;
+              font-weight: normal;
+            }
+          }
+          &.total {
+            grid-area: total;
+            justify-self: flex-end;
+          }
+        }
+      }
+    }
+
+    & .calculations {
+    }
+  }
+}
+
+.line {
+  width: 80%;
+  height: 2px;
+
+  display: block;
+
+  margin: 1em 0;
+
+  &--broken {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 2px dashed black;
+  }
 }
