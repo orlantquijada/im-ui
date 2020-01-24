@@ -175,7 +175,7 @@
           }
           &.total {
             grid-area: total;
-            justify-self: flex-end;
+            @include flexbox($justify: flex-end);
           }
         }
       }

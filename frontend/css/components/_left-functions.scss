@@ -10,7 +10,12 @@
 
   &--active {
     color: $main-purple;
+    background-color: #f2f5fa;
   }
+
+  // &--minimized {
+
+  // }
 
   @include flexbox($justify: flex-start);
 

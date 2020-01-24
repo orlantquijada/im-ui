@@ -337,6 +337,11 @@ ul {
   border-radius: 1em;
 }
 
+.main .table__body__card:hover {
+  background-color: #f9fafe;
+  cursor: pointer;
+}
+
 .main .table__body__card__item {
   color: #91a2b6;
 }
@@ -703,7 +708,19 @@ ul {
   -ms-grid-row: 1;
   -ms-grid-column: 4;
   grid-area: total;
-  justify-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .right-side-bar__bot .calculations {
@@ -892,6 +909,7 @@ ul {
 
 .left-side-bar__mid__function--active {
   color: #6646eb;
+  background-color: #f2f5fa;
 }
 
 .left-side-bar__mid__function__logo {
