@@ -471,4 +471,191 @@ ul {
   cursor: pointer;
   color: #6646eb;
 }
+
+.pos-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.pos-content__right {
+  width: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.pos-content__right__sign {
+  padding-top: 20px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pos-content__right__sign__logo {
+  width: 50px;
+  height: auto;
+}
+
+.pos-content__right__sign__pharmacy-name {
+  font-size: 25px;
+}
+
+.pos-content__right__location {
+  font-size: 16px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.pos-content__right__transaction {
+  padding: 20px 0px 0px;
+}
+
+.pos-content__right__transaction__transaction-number {
+  padding-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+
+.pos-content__right__transaction__teller {
+  padding: 0 40px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.pos-content__right__transaction__teller__picture {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+}
+
+.pos-content__right__transaction__teller__info {
+  padding-left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.pos-content__right__transaction__teller__info__name {
+  margin: 5px 0px;
+  font-size: 24px;
+}
+
+.pos-content__right__transaction__teller__info__position {
+  font-size: 16px;
+}
+
+.pos-content__right__invoice {
+  padding: 20px;
+}
+
+.pos-content__right__invoice__items {
+  height: 35vh;
+}
+
+.pos-content__right__invoice__checkout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 50%;
+  margin-left: auto;
+}
+
+.pos-content__right__invoice__total {
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.filler {
+  width: 60vw;
+  height: 100vh;
+  background-color: #f2f5fa;
+}
+
+.fillerz {
+  width: 15vw;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.line {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid black;
+}
+
+.line--broken {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px dashed black;
+}
+
+.transaction-no {
+  font-weight: 400;
+}
+
+.h6 {
+  font-size: 16px;
+}
+
+.x-small {
+  font-size: 14px;
+}
+
+.total {
+  font-size: 72px;
+}
 /*# sourceMappingURL=main.css.map */
