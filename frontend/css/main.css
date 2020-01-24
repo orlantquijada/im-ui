@@ -80,6 +80,7 @@ ul {
   width: 1.2em;
   height: auto;
   justify-self: flex-end;
+  cursor: pointer;
 }
 
 .left-side-bar__top__pharmacy-name {
@@ -88,11 +89,17 @@ ul {
   font-style: normal;
   font-weight: normal;
   color: #f0edfe;
+  cursor: pointer;
+}
+
+.left-side-bar__top__logo {
+  cursor: pointer;
 }
 
 .left-side-bar__mid {
   width: 100%;
   height: auto;
+  padding-left: 5px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -115,6 +122,306 @@ ul {
   height: 100%;
   width: 1080px;
   background-color: #f2f5fa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main .search {
+  width: 500px;
+  height: 51.04px;
+  background-color: #ffffff;
+  border-radius: 5em;
+  margin: 5em 0 4em 0;
+  padding: 0 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.main .search__main {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.main .search__main__logo {
+  margin-right: 1em;
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  width: 21px;
+  height: auto;
+  cursor: z;
+}
+
+.main .search__main__name {
+  width: 80%;
+  border: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+}
+
+.main .search__main__name::-webkit-input-placeholder {
+  padding-left: 0.2em;
+  color: #b4b1bc;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.main .search__main__name:-ms-input-placeholder {
+  padding-left: 0.2em;
+  color: #b4b1bc;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.main .search__main__name::-ms-input-placeholder {
+  padding-left: 0.2em;
+  color: #b4b1bc;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.main .search__main__name::placeholder {
+  padding-left: 0.2em;
+  color: #b4b1bc;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.main .search__results-count {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 7em;
+  color: #b4b1bc;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.main .table {
+  width: 90%;
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.main .table__header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+      grid-template-areas: "check generic brand company dosage price";
+  margin-bottom: 1em;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .table__header__item {
+  font-size: 14px;
+  line-height: 21px;
+  color: #b4b1bc;
+  text-transform: uppercase;
+}
+
+.main .table__header__item.check {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: check;
+  height: 1.5em;
+  width: 1.5em;
+  background: #ffffff;
+  border: 0.5px solid #c1c1c1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.main .table__header__item.check--active {
+  background-color: #6646eb;
+}
+
+.main .table__header__item.generic {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: generic;
+}
+
+.main .table__header__item.brand {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: brand;
+}
+
+.main .table__header__item.company {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: company;
+}
+
+.main .table__header__item.dosage {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: dosage;
+}
+
+.main .table__header__item.price {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: price;
+}
+
+.main .table__body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  row-gap: 6px;
+}
+
+.main .table__body__card {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+      grid-template-areas: "check generic brand company dosage price menu";
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 1em;
+}
+
+.main .table__body__card__item {
+  color: #91a2b6;
+}
+
+.main .table__body__card__item .name {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main .table__body__card__item.check {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: check;
+  height: 1.5em;
+  width: 1.5em;
+  background: #ffffff;
+  border: 0.5px solid #c1c1c1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.main .table__body__card__item.check--active {
+  background-color: #6646eb;
+}
+
+.main .table__body__card__item.generic {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: generic;
+  color: #6646eb;
+}
+
+.main .table__body__card__item.brand {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: brand;
+}
+
+.main .table__body__card__item.company {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: company;
+}
+
+.main .table__body__card__item.dosage {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: dosage;
+}
+
+.main .table__body__card__item.price {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: price;
+}
+
+.main .table__body__card__item.menu {
+  -ms-grid-row: 1;
+  -ms-grid-column: 7;
+  grid-area: menu;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.main .table__body__card__item.menu img {
+  width: 25px;
+  height: 25px;
 }
 
 .right-side-bar {
@@ -128,6 +435,8 @@ ul {
   height: auto;
   margin: 1em auto;
   padding: 1em 1em 1em 2em;
+  border-top-left-radius: 5em;
+  border-bottom-left-radius: 5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -144,9 +453,7 @@ ul {
 }
 
 .left-side-bar__mid__function--active {
-  background-color: #6646eb;
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
+  color: #6646eb;
 }
 
 .left-side-bar__mid__function__logo {
@@ -156,9 +463,12 @@ ul {
 
 .left-side-bar__mid__function__name {
   margin: auto 1em;
+  color: inherit;
 }
 
-.left-side-bar__mid__function__name--active {
-  color: #f0edfe;
+.left-side-bar__mid__function:hover {
+  background-color: #f2f5fa;
+  cursor: pointer;
+  color: #6646eb;
 }
 /*# sourceMappingURL=main.css.map */

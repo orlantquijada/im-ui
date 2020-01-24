@@ -3,4 +3,209 @@
   width: 1080px;
 
   background-color: #f2f5fa;
+
+  @include flexbox($direction: column);
+
+  .search {
+    width: 500px;
+    height: 51.04px;
+
+    background-color: #ffffff;
+    border-radius: 5em;
+
+    margin: 5em 0 4em 0;
+
+    padding: 0 1.5em;
+
+    @include flexbox($justify: space-between);
+
+    &__main {
+      flex-grow: 1;
+      @include flexbox($justify: flex-start);
+
+      &__logo {
+        margin-right: 1em;
+        transform: scaleX(-1);
+        width: 21px;
+        height: auto;
+
+        cursor: z;
+      }
+
+      &__name {
+        width: 80%;
+
+        border: none;
+
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 48px;
+
+        &::placeholder {
+          padding-left: 0.2em;
+          color: #b4b1bc;
+
+          font-style: normal;
+          font-weight: normal;
+        }
+      }
+    }
+
+    &__results-count {
+      flex-grow: 1;
+      width: 7em;
+
+      color: #b4b1bc;
+      font-weight: normal;
+      font-style: normal;
+
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+
+  .table {
+    width: 90%;
+    height: 80%;
+
+    overflow-y: scroll;
+
+    &__header {
+      display: grid;
+
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+      grid-template-areas: "check generic brand company dosage price";
+
+      margin-bottom: 1em;
+
+      justify-items: center;
+      align-items: center;
+
+      &__item {
+        font-size: 14px;
+        line-height: 21px;
+
+        color: #b4b1bc;
+
+        text-transform: uppercase;
+
+        &.check {
+          grid-area: check;
+
+          height: 1.5em;
+          width: 1.5em;
+
+          background: #ffffff;
+          border: 0.5px solid #c1c1c1;
+          box-sizing: border-box;
+          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+          border-radius: 7px;
+
+          cursor: pointer;
+
+          &--active {
+            background-color: $main-purple;
+          }
+        }
+        &.generic {
+          grid-area: generic;
+        }
+        &.brand {
+          grid-area: brand;
+        }
+        &.company {
+          grid-area: company;
+        }
+        &.dosage {
+          grid-area: dosage;
+        }
+        &.price {
+          grid-area: price;
+        }
+      }
+    }
+
+    &__body {
+      display: grid;
+
+      grid-template-columns: auto;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 6px;
+
+      &__card {
+        display: grid;
+
+        grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
+        grid-template-areas: "check generic brand company dosage price menu";
+
+        justify-items: center;
+        align-items: center;
+
+        height: 60px;
+
+        background-color: #ffffff;
+        border-radius: 1em;
+
+        &__item {
+          color: #91a2b6;
+
+          & .name {
+            font-size: 16px;
+            line-height: 21px;
+
+            font-weight: normal;
+            font-style: normal;
+          }
+
+          &.check {
+            grid-area: check;
+
+            height: 1.5em;
+            width: 1.5em;
+
+            background: #ffffff;
+            border: 0.5px solid #c1c1c1;
+            box-sizing: border-box;
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            &--active {
+              background-color: $main-purple;
+            }
+          }
+          &.generic {
+            grid-area: generic;
+
+            color: $main-purple;
+          }
+          &.brand {
+            grid-area: brand;
+          }
+          &.company {
+            grid-area: company;
+          }
+          &.dosage {
+            grid-area: dosage;
+          }
+          &.price {
+            grid-area: price;
+          }
+          &.menu {
+            grid-area: menu;
+            cursor: pointer;
+
+            @include flexbox;
+
+            & img {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

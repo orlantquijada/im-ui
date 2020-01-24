@@ -21,6 +21,8 @@
       height: auto;
 
       justify-self: flex-end;
+
+      cursor: pointer;
     }
 
     &__pharmacy-name {
@@ -30,12 +32,20 @@
       font-weight: normal;
 
       color: $white-purple;
+
+      cursor: pointer;
+    }
+
+    &__logo {
+      cursor: pointer;
     }
   }
 
   &__mid {
     width: 100%;
     height: auto;
+
+    padding-left: 5px;
 
     flex-grow: 1;
 

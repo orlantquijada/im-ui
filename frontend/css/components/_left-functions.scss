@@ -5,10 +5,11 @@
   margin: 1em auto;
   padding: 1em 1em 1em 2em;
 
+  border-top-left-radius: 5em;
+  border-bottom-left-radius: 5em;
+
   &--active {
-    background-color: $main-purple;
-    border-top-right-radius: 1em;
-    border-bottom-right-radius: 1em;
+    color: $main-purple;
   }
 
   @include flexbox($justify: flex-start);
@@ -20,9 +21,12 @@
 
   &__name {
     margin: auto 1em;
+    color: inherit;
+  }
 
-    &--active {
-      color: $white-purple;
-    }
+  &:hover {
+    background-color: #f2f5fa;
+    cursor: pointer;
+    color: #6646eb;
   }
 }
