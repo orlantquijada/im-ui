@@ -1,128 +1,128 @@
 .pos-content {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-	&__right {
-		width: 25vw;
-		display: flex;
-		justify-content: flex-start;
-		flex-direction: column;
-		&__sign {
-			padding-top: 20px;
-			width: 30%;
-			margin-left: auto;
-			margin-right: auto;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			&__logo {
-				width: 50px;
-				height: auto;
-			}
+  &__right {
+    width: 25vw;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    &__sign {
+      padding-top: 20px;
+      width: 30%;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &__logo {
+        width: 50px;
+        height: auto;
+      }
 
-			&__pharmacy-name {
-				font-size: 25px;
-			}
-		}
+      &__pharmacy-name {
+        font-size: 25px;
+      }
+    }
 
-		&__location {
-			font-size: 16px;
-			align-self: center;
-		}
+    &__location {
+      font-size: 16px;
+      align-self: center;
+    }
 
-		&__transaction {
-			padding: 20px 0px 0px;
-			&__transaction-number {
-				padding-left: 30px;
-				display: flex;
-				flex-direction: row;
-				align-self: baseline;
-			}
+    &__transaction {
+      padding: 20px 0px 0px;
+      &__transaction-number {
+        padding-left: 30px;
+        display: flex;
+        flex-direction: row;
+        align-self: baseline;
+      }
 
-			&__teller {
-				padding: 0 40px 20px;
-				display: flex;
-				flex-direction: row;
-				&__picture {
-					border-radius: 50%;
-					width: 80px;
-					height: 80px;
-					border: 1px solid black;
-				}
-				&__info {
-					padding-left: 20px;
-					display: flex;
-					flex-direction: column;
-					&__name {
-						margin: 5px 0px;
-						font-size: 24px;
-					}
-					&__position {
-						font-size: 16px;
-					}
-				}
-			}
-		}
+      &__teller {
+        padding: 0 40px 20px;
+        display: flex;
+        flex-direction: row;
+        &__picture {
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          border: 1px solid black;
+        }
+        &__info {
+          padding-left: 20px;
+          display: flex;
+          flex-direction: column;
+          &__name {
+            margin: 5px 0px;
+            font-size: 24px;
+          }
+          &__position {
+            font-size: 16px;
+          }
+        }
+      }
+    }
 
-		&__invoice {
-			padding: 20px;
-			&__items {
-				height: 35vh;
-			}
-			&__checkout {
-				display: flex;
-				justify-content: flex-end;
-				width: 50%;
-				margin-left: auto;
-			}
-			&__total {
-				padding-top: 20px;
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-			}
-		}
-	}
+    &__invoice {
+      padding: 20px;
+      &__items {
+        height: 35vh;
+      }
+      &__checkout {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+        margin-left: auto;
+      }
+      &__total {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
 }
 
 .filler {
-	width: 60vw;
-	height: 100vh;
-	background-color: #f2f5fa;
+  width: 60vw;
+  height: 100vh;
+  background-color: #f2f5fa;
 }
 
 .fillerz {
-	width: 15vw;
-	height: 100vh;
-	background-color: #fff;
+  width: 15vw;
+  height: 100vh;
+  background-color: #fff;
 }
 
-.line {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	border-top: 2px solid black;
+// .line {
+// 	width: 90%;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	border-top: 2px solid black;
 
-	&--broken {
-		width: 90%;
-		margin-left: auto;
-		margin-right: auto;
-		border-top: 2px dashed black;
-	}
-}
+// 	&--broken {
+// 		width: 90%;
+// 		margin-left: auto;
+// 		margin-right: auto;
+// 		border-top: 2px dashed black;
+// 	}
+// }
 
 .transaction-no {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .h6 {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .x-small {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .total {
-	font-size: 72px;
+  font-size: 72px;
 }

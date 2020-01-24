@@ -4,15 +4,20 @@
 
   background-color: #f9fafe;
 
-  @include flexbox($direction: column);
+  @include flexbox(
+    $direction: column,
+    $align: flex-start,
+    $justify: flex-start
+  );
 
   &__top {
-    @include flexbox($direction: column);
+    @include flexbox($direction: column, $justify: flex-start);
+    margin-top: 1em;
 
     height: 10%;
     width: 100%;
 
-    flex-grow: 0.5;
+    flex-grow: 0.3;
 
     &__pharmacy {
       @include flexbox($direction: column);
@@ -48,7 +53,9 @@
   }
 
   &__mid {
-    flex-grow: 0.5;
+    flex-grow: 0.1;
+
+    margin-top: 5em;
 
     width: 100%;
     height: auto;
@@ -175,22 +182,115 @@
     }
 
     & .calculations {
+      margin-top: 2em;
+      width: 100%;
+
+      @include flexbox($justify: flex-end, $direction: column);
+
+      & .total-items {
+        width: 50%;
+        align-self: flex-end;
+
+        @include flexbox($justify: space-between);
+
+        .name {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+
+        .number {
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+      }
+
+      & .subtotal {
+        width: 50%;
+        align-self: flex-end;
+
+        @include flexbox($justify: space-between);
+
+        .name {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+
+        .number {
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+      }
+
+      & .discount {
+        width: 50%;
+        align-self: flex-end;
+
+        @include flexbox($justify: space-between);
+
+        .name {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+
+        .number {
+          font-size: 14px;
+          line-height: 21px;
+
+          color: #666666;
+        }
+      }
+    }
+
+    & .total {
+      @include flexbox($justify: space-between);
+      width: 100%;
+
+      .name {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+
+        color: #666666;
+      }
+
+      .number {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 36px;
+
+        color: #666666;
+      }
     }
   }
 }
 
 .line {
-  width: 80%;
-  height: 2px;
+  width: 90%;
+  border-top: 2px solid black;
 
-  display: block;
-
-  margin: 1em 0;
+  margin: 1em auto;
 
   &--broken {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    margin: 1em auto;
     border-top: 2px dashed black;
   }
 }
