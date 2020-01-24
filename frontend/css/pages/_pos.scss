@@ -67,9 +67,13 @@
 		&__invoice {
 			padding: 20px;
 			&__items {
-				height: 40vh;
+				height: 35vh;
 			}
 			&__checkout {
+				display: flex;
+				justify-content: flex-end;
+				width: 50%;
+				margin-left: auto;
 			}
 			&__total {
 				padding-top: 20px;
@@ -84,13 +88,13 @@
 .filler {
 	width: 60vw;
 	height: 100vh;
-	background-color: yellow;
+	background-color: #f2f5fa;
 }
 
 .fillerz {
 	width: 15vw;
 	height: 100vh;
-	background-color: black;
+	background-color: #fff;
 }
 
 .line {

@@ -115,7 +115,18 @@
 }
 
 .pos-content__right__invoice__items {
-  height: 40vh;
+  height: 35vh;
+}
+
+.pos-content__right__invoice__checkout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 50%;
+  margin-left: auto;
 }
 
 .pos-content__right__invoice__total {
@@ -135,13 +146,13 @@
 .filler {
   width: 60vw;
   height: 100vh;
-  background-color: yellow;
+  background-color: #f2f5fa;
 }
 
 .fillerz {
   width: 15vw;
   height: 100vh;
-  background-color: black;
+  background-color: #fff;
 }
 
 .line {
