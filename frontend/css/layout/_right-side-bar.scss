@@ -4,6 +4,8 @@
 
   background-color: #f9fafe;
 
+  justify-self: flex-end;
+
   @include flexbox(
     $direction: column,
     $align: flex-start,

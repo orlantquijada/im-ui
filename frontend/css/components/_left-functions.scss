@@ -1,12 +1,15 @@
 .left-side-bar__mid__function {
-  width: 100%;
-  height: auto;
+  width: 80px;
+  height: 80px;
 
-  margin: 1em auto;
-  padding: 1em 1em 1em 2em;
+  margin: 1em;
+  // padding: 1em 1em 1em 2em;
+  // padding: 1em;
 
-  border-top-left-radius: 5em;
-  border-bottom-left-radius: 5em;
+  // border-top-left-radius: 5em;
+  // border-bottom-left-radius: 5em;
+
+  border-radius: 100%;
 
   &--active {
     color: $main-purple;
@@ -17,16 +20,19 @@
 
   // }
 
-  @include flexbox($justify: flex-start);
+  // @include flexbox($justify: flex-start);
+  @include flexbox;
 
   &__logo {
-    width: 50px;
+    width: 40px;
     height: auto;
   }
 
   &__name {
     margin: auto 1em;
     color: inherit;
+
+    display: none;
   }
 
   &:hover {

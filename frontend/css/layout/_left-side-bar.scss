@@ -1,10 +1,48 @@
 .left-side-bar {
   height: 100%;
-  width: 350px;
+  width: 100px;
 
   background-color: #ffffff;
 
   @include flexbox($justify: flex-start, $direction: column);
+
+  &:hover {
+    width: 300px;
+
+    .left-side-bar__top {
+      justify-content: space-between;
+      padding: 2em;
+
+      &__menu {
+        justify-self: flex-end;
+      }
+
+      &__pharmacy-name {
+        display: block;
+      }
+
+      &__logo {
+        display: block;
+      }
+    }
+
+    .left-side-bar__mid {
+      padding-left: 10px;
+
+      &__function {
+        width: 100%;
+
+        border-radius: 5em 0 0 5em;
+        justify-content: flex-start;
+
+        padding-left: 2em;
+
+        &__name {
+          display: block;
+        }
+      }
+    }
+  }
 
   &__top {
     flex-grow: 1;
@@ -12,15 +50,14 @@
     max-height: 107px;
 
     background-color: $main-purple;
-    padding: 2em;
 
-    @include flexbox($justify: space-between);
+    @include flexbox($justify: center);
 
     &__menu {
       width: 1.2em;
       height: auto;
 
-      justify-self: flex-end;
+      justify-self: center;
 
       cursor: pointer;
     }
@@ -33,19 +70,21 @@
 
       color: $white-purple;
 
+      display: none;
+
       cursor: pointer;
     }
 
     &__logo {
       cursor: pointer;
+
+      display: none;
     }
   }
 
   &__mid {
     width: 100%;
     height: auto;
-
-    padding-left: 5px;
 
     flex-grow: 1;
 

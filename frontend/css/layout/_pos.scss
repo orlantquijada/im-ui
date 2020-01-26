@@ -1,6 +1,6 @@
 .site {
   height: 100vh;
-  width: auto;
+  width: 100vw;
 
-  @include flexbox;
+  @include flexbox($justify: flex-start);
 }

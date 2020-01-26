@@ -4,6 +4,8 @@
 
   background-color: #f2f5fa;
 
+  flex-grow: 1;
+
   @include flexbox($direction: column);
 
   .search {
@@ -66,7 +68,7 @@
   }
 
   .table {
-    width: 90%;
+    width: 100%;
     height: 80%;
 
     overflow-y: scroll;
@@ -77,7 +79,8 @@
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-areas: "check generic brand company dosage price";
 
-      margin-bottom: 1em;
+      width: 90%;
+      margin: 0 auto 1em auto;
 
       justify-items: center;
       align-items: center;
@@ -96,7 +99,7 @@
           height: 1.5em;
           width: 1.5em;
 
-          background: #ffffff;
+          background-color: #ffffff;
           border: 0.5px solid #c1c1c1;
           box-sizing: border-box;
           box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -129,8 +132,7 @@
     &__body {
       display: grid;
 
-      grid-template-columns: auto;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: auto;
       row-gap: 6px;
 
       &__card {
@@ -142,7 +144,12 @@
         justify-items: center;
         align-items: center;
 
+        width: 90%;
         height: 60px;
+
+        transition: width 500ms ease;
+
+        margin: 0 auto;
 
         background-color: #ffffff;
         border-radius: 1em;
@@ -150,6 +157,10 @@
         &:hover {
           background-color: #f9fafe;
           cursor: pointer;
+
+          width: 92%;
+          height: 70px;
+          margin: 5px auto;
         }
 
         &__item {
@@ -207,6 +218,15 @@
             & img {
               width: 25px;
               height: 25px;
+
+              transition: all 200ms ease;
+            }
+
+            &:hover {
+              img {
+                width: 40px;
+                height: 40px;
+              }
             }
           }
         }

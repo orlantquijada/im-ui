@@ -18,16 +18,16 @@ ul {
 
 .site {
   height: 100vh;
-  width: auto;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -36,7 +36,7 @@ ul {
 
 .left-side-bar {
   height: 100%;
-  width: 350px;
+  width: 100px;
   background-color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -53,6 +53,46 @@ ul {
           flex-direction: column;
 }
 
+.left-side-bar:hover {
+  width: 300px;
+}
+
+.left-side-bar:hover .left-side-bar__top {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2em;
+}
+
+.left-side-bar:hover .left-side-bar__top__menu {
+  justify-self: flex-end;
+}
+
+.left-side-bar:hover .left-side-bar__top__pharmacy-name {
+  display: block;
+}
+
+.left-side-bar:hover .left-side-bar__top__logo {
+  display: block;
+}
+
+.left-side-bar:hover .left-side-bar__mid {
+  padding-left: 10px;
+}
+
+.left-side-bar:hover .left-side-bar__mid__function {
+  width: 100%;
+  border-radius: 5em 0 0 5em;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 2em;
+}
+
+.left-side-bar:hover .left-side-bar__mid__function__name {
+  display: block;
+}
+
 .left-side-bar__top {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -60,16 +100,15 @@ ul {
   width: 100%;
   max-height: 107px;
   background-color: #6646eb;
-  padding: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -79,7 +118,8 @@ ul {
 .left-side-bar__top__menu {
   width: 1.2em;
   height: auto;
-  justify-self: flex-end;
+  -ms-grid-column-align: center;
+      justify-self: center;
   cursor: pointer;
 }
 
@@ -89,17 +129,18 @@ ul {
   font-style: normal;
   font-weight: normal;
   color: #f0edfe;
+  display: none;
   cursor: pointer;
 }
 
 .left-side-bar__top__logo {
   cursor: pointer;
+  display: none;
 }
 
 .left-side-bar__mid {
   width: 100%;
   height: auto;
-  padding-left: 5px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -122,6 +163,9 @@ ul {
   height: 100%;
   width: 1080px;
   background-color: #f2f5fa;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -237,7 +281,7 @@ ul {
 }
 
 .main .table {
-  width: 90%;
+  width: 100%;
   height: 80%;
   overflow-y: scroll;
 }
@@ -248,7 +292,8 @@ ul {
   -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-areas: "check generic brand company dosage price";
-  margin-bottom: 1em;
+  width: 90%;
+  margin: 0 auto 1em auto;
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -268,7 +313,7 @@ ul {
   grid-area: check;
   height: 1.5em;
   width: 1.5em;
-  background: #ffffff;
+  background-color: #ffffff;
   border: 0.5px solid #c1c1c1;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -315,10 +360,8 @@ ul {
 .main .table__body {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto;
-      grid-template-columns: auto;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
   row-gap: 6px;
 }
 
@@ -332,7 +375,11 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 90%;
   height: 60px;
+  -webkit-transition: width 500ms ease;
+  transition: width 500ms ease;
+  margin: 0 auto;
   background-color: #ffffff;
   border-radius: 1em;
 }
@@ -340,6 +387,9 @@ ul {
 .main .table__body__card:hover {
   background-color: #f9fafe;
   cursor: pointer;
+  width: 92%;
+  height: 70px;
+  margin: 5px auto;
 }
 
 .main .table__body__card__item {
@@ -427,12 +477,20 @@ ul {
 .main .table__body__card__item.menu img {
   width: 25px;
   height: 25px;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.main .table__body__card__item.menu:hover img {
+  width: 40px;
+  height: 40px;
 }
 
 .right-side-bar {
   height: 100%;
   width: 490px;
   background-color: #f9fafe;
+  justify-self: flex-end;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -886,21 +944,19 @@ ul {
 }
 
 .left-side-bar__mid__function {
-  width: 100%;
-  height: auto;
-  margin: 1em auto;
-  padding: 1em 1em 1em 2em;
-  border-top-left-radius: 5em;
-  border-bottom-left-radius: 5em;
+  width: 80px;
+  height: 80px;
+  margin: 1em;
+  border-radius: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -913,19 +969,203 @@ ul {
 }
 
 .left-side-bar__mid__function__logo {
-  width: 50px;
+  width: 40px;
   height: auto;
 }
 
 .left-side-bar__mid__function__name {
   margin: auto 1em;
   color: inherit;
+  display: none;
 }
 
 .left-side-bar__mid__function:hover {
   background-color: #f2f5fa;
   cursor: pointer;
   color: #6646eb;
+}
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  display: none;
+}
+
+.modal .add-medicine {
+  height: 50vh;
+  width: 50vw;
+  -webkit-transform: translateY(-5em);
+          transform: translateY(-5em);
+  background-color: white;
+  border-radius: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modal .add-medicine .close {
+  position: absolute;
+  right: 0.5em;
+  top: 0;
+  font-size: 42px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.modal .add-medicine .table {
+  -webkit-transform: translateY(-1.5em);
+          transform: translateY(-1.5em);
+  width: 90%;
+  margin: 2em 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  row-gap: 0.8em;
+  -webkit-column-gap: 5em;
+          column-gap: 5em;
+  color: rgba(61, 62, 64, 0.7);
+}
+
+.modal .add-medicine .table__item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.modal .add-medicine .table__item h1 {
+  font-size: 18px;
+  width: auto;
+}
+
+.modal .add-medicine .table__item .name {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.modal .add-medicine .cash-out {
+  position: absolute;
+  bottom: 2em;
+  width: 90%;
+  color: rgba(61, 62, 64, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.modal .add-medicine .cash-out .total {
+  width: 30%;
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.modal .add-medicine .cash-out .total h1 {
+  font-size: 24px;
+}
+
+.modal .add-medicine .cash-out .total h1.name {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.modal .add-medicine .cash-out .buttons {
+  width: 45%;
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.modal .add-medicine .cash-out .buttons button {
+  width: 180px;
+  height: 44px;
+  background-color: #f0f1f3;
+  color: rgba(61, 62, 64, 0.7);
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  -webkit-transition: background-color 400ms ease;
+  transition: background-color 400ms ease;
+}
+
+.modal .add-medicine .cash-out .buttons button.cancel:hover {
+  background-color: #dee0e4;
+}
+
+.modal .add-medicine .cash-out .buttons button.submit {
+  background-color: #98d838;
+  color: #f0edfe;
+}
+
+.modal .add-medicine .cash-out .buttons button.submit:hover {
+  background-color: #8bc731;
+}
+
+.modal .add-medicine .cash-out .buttons button h1 {
+  font-size: 14px;
 }
 
 .pos-content {
