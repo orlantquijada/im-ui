@@ -56,7 +56,7 @@
 
     &__results-count {
       flex-grow: 1;
-      width: 7em;
+      min-width: 7em;
 
       color: #b4b1bc;
       font-weight: normal;
