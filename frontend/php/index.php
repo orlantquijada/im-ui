@@ -1,3 +1,41 @@
+<?php
+session_start();
+  $con = mysqli_connect("localhost", "root", "", "pharmacy_database")
+        or die ("Error in connection");
+
+  $sql = "SELECT * FROM medicine";
+  $result = mysqli_query($con,$sql);
+
+
+  while($row = mysqli_fetch_array($result)){
+    $display .="
+      <div class='table__body__card'>
+        <div class='table__body__card__item check'>
+          <div></div>
+        </div>
+        <div class'table__body__card__item generic'>
+          <h1 class='name'>".$row['generic_name']."</h1>
+        </div>
+        <div class='table__body__card__item brand'>
+          <h1 class='name'>".$row['brand_name']."</h1>
+        </div>
+        <div class='table__body__card__item company'>
+          <h1 class='name'>".$row['medical_distributor']."</h1>
+        </div>
+        <div class='table__body__card__item dosage'>
+          <h1 class='name'>".$row['dosage']."</h1>
+        </div>
+        <div class='table__body__card__item price'>
+          <h1 class='name'>".$row['price']."</h1>
+        </div>
+        <div class='table__body__card__item menu'>
+          <img src='../static/3dots.svg' />
+        </div>
+      </div>
+    ";
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,12 +43,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>POS</title>
-
-    <!-- Loading Bootstrap -->
-    <!-- <link href="../css/vendor/bootstrap.min.css" rel="stylesheet" /> -->
-
-    <!-- Loading Flat UI -->
-    <!-- <link href="../css/vendor/flat-ui.css" rel="stylesheet" /> -->
 
     <link rel="stylesheet" href="../css/main.css" />
 
@@ -93,293 +125,11 @@
           </section>
 
           <section class="table__body">
-            <div class="table__body__card">
-              <div class="table__body__card__item check">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
-
-            <div class="table__body__card">
-              <div class="table__body__card__item check ">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
+            <?php
+              if(isset($display)){
+                echo $display;
+              }
+            ?>
           </section>
         </div>
       </section>
