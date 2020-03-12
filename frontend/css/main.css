@@ -91,6 +91,7 @@ ul {
 
 .left-side-bar:hover .left-side-bar__mid__function__name {
   display: block;
+  font-size: 18px;
 }
 
 .left-side-bar__top {
@@ -948,6 +949,7 @@ ul {
   height: 80px;
   margin: 1em;
   border-radius: 100%;
+  color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -975,7 +977,6 @@ ul {
 
 .left-side-bar__mid__function__name {
   margin: auto 1em;
-  color: inherit;
   display: none;
 }
 

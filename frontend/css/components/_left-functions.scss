@@ -3,24 +3,15 @@
   height: 80px;
 
   margin: 1em;
-  // padding: 1em 1em 1em 2em;
-  // padding: 1em;
-
-  // border-top-left-radius: 5em;
-  // border-bottom-left-radius: 5em;
-
   border-radius: 100%;
+
+  color: #000;
 
   &--active {
     color: $main-purple;
     background-color: #f2f5fa;
   }
 
-  // &--minimized {
-
-  // }
-
-  // @include flexbox($justify: flex-start);
   @include flexbox;
 
   &__logo {
@@ -30,14 +21,12 @@
 
   &__name {
     margin: auto 1em;
-    color: inherit;
-
     display: none;
   }
 
   &:hover {
     background-color: #f2f5fa;
     cursor: pointer;
-    color: #6646eb;
+    color: $main-purple;
   }
 }
