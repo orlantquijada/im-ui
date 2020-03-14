@@ -86,12 +86,13 @@
       align-items: center;
 
       &__item {
-        font-size: 14px;
-        line-height: 21px;
-
         color: #b4b1bc;
 
         text-transform: uppercase;
+
+        & .name {
+          font-size: 18px;
+        }
 
         &.check {
           grid-area: check;

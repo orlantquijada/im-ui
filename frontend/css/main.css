@@ -273,7 +273,7 @@ ul {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 7em;
+  min-width: 7em;
   color: #b4b1bc;
   font-weight: normal;
   font-style: normal;
@@ -302,10 +302,12 @@ ul {
 }
 
 .main .table__header__item {
-  font-size: 14px;
-  line-height: 21px;
   color: #b4b1bc;
   text-transform: uppercase;
+}
+
+.main .table__header__item .name {
+  font-size: 18px;
 }
 
 .main .table__header__item.check {
