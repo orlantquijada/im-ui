@@ -457,6 +457,10 @@ ul {
   grid-area: price;
 }
 
+.main .table__body__card__item.button {
+  grid-area: button;
+}
+
 .main .table__body__card__item.menu {
   -ms-grid-row: 1;
   -ms-grid-column: 7;

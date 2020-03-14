@@ -210,6 +210,9 @@
           &.price {
             grid-area: price;
           }
+          &.button{
+            grid-area: button;
+          }
           &.menu {
             grid-area: menu;
             cursor: pointer;
