@@ -11,10 +11,8 @@ session_start();
   while ($row = mysqli_fetch_array($result)) {
     $table .=
       "
-    <div class='table__body__card' input type='submit' name='table-button' value='" . $row['id'] . "'>
-      <div class='table__body__card__item check '>
-        <div></div>
-      </div>
+    <div class='table__body__card' id='" . $row['id'] . "'>
+      <input type='text' name='quantity' class='table__body__card__item quantity'>
       <div class='table__body__card__item generic'>
         <h1 class='name'>" . $row['generic_name'] . "</h1>
       </div>
@@ -30,19 +28,17 @@ session_start();
       <div class='table__body__card__item price'>
         <h1 class='name'>" . $row['price'] . "  </h1>
       </div>
-      <div class='table__body__card__item menu'>
-        <img src='../static/3dots.svg' />
-      </div>
+      <button type='button' name='buy' value'".$row['id']."'>Buy</button>
     </div>
     ";
   }
 
 
   $id = '';
-  if(isset($_GET['table-button'])){
-    $id = $_GET['table-button'];
+  if(isset($_GET['buy'])){
+    $id = $_GET['buy'];
   }
-  $sql = "SELECT * FROM medicine WHERE id = '$id";
+  $sql = "SELECT * FROM medicine WHERE id = '$id'";
   $result = mysqli_query($con, $sql);
   $modal = "";
   $row = mysqli_fetch_array($result);
@@ -88,9 +84,6 @@ session_start();
   </form>
   ";
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +97,6 @@ session_start();
 
   <link rel="stylesheet" href="../css/main.css" />
 
-  <script type="text/javascript" src="../js/index.js" async></script>
 </head>
 
 <body>
@@ -164,7 +156,7 @@ session_start();
           </div>
         </section>
         <section class="table__body" action="">
-          <form action="" method="post">
+          <form name='table' action="" method="post">
             <?php
             if(isset($table)){
               echo $table;
