@@ -60,6 +60,9 @@ function displayModal()
   $id = $dochtml->getElementById("1");
   echo $id;
   $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
+<<<<<<< HEAD
+>>>>>>> parent of 50ac44b... Update index.php
+=======
 >>>>>>> parent of 50ac44b... Update index.php
   $sql = "SELECT * FROM medicine WHERE id = '$id'";
   $result = mysqli_query($con, $sql);
@@ -190,6 +193,7 @@ function displayModal()
         <form action="" method="post"></form>
         <section class="table__body" action="">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <form action="" method="post">
             <?php
             if(isset($table)){
@@ -197,6 +201,11 @@ function displayModal()
             };
             ?>
           </form>
+=======
+          <?php
+          displayTable();
+          ?>
+>>>>>>> parent of 50ac44b... Update index.php
 =======
           <?php
           displayTable();
