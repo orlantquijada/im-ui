@@ -13,7 +13,7 @@ function displayTable()
   while ($row = mysqli_fetch_array($result)) {
     $table .=
       "
-    <div class='table__body__card' input type='submit' name='table-button' id='" . $row['id'] . "'>
+    <div class='table__body__card' input type='submit' name='table-button' value='" . $row['id'] . "'>
       <div class='table__body__card__item check '>
         <div></div>
       </div>
@@ -46,12 +46,12 @@ function displayTable()
 
 function displayModal()
 {
-  $dochtml = new DOMDocument();
-  $dochtml->loadHTML("index.php");
-  $id = $dochtml->getElementById("1");
-  echo $id;
   $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
-  $sql = "SELECT * FROM medicine WHERE id = '$id'";
+  $id = '';
+  if(isset($_GET['table-button'])){
+    $id = $_GET['table-button'];
+  }
+  $sql = "SELECT * FROM medicine WHERE id = 1";
   $result = mysqli_query($con, $sql);
   $modal = "";
   $row = mysqli_fetch_array($result);
@@ -59,8 +59,8 @@ function displayModal()
    "
   <form action='#' method='GET' class='table'>
     <div class='table__item generic'>
-      <h1 class='name'>".$row['generic_name']."</h1>
-      <h1 class='title'>Paracetamol</h1>
+      <h1 class='name'>Generic Name:</h1>
+      <h1 class='title'>".$row['generic_name']."</h1>
     </div>
 
     <div class='table__item brand'>
@@ -174,12 +174,12 @@ function displayModal()
             <h1 class="name">Price</h1>
           </div>
         </section>
-
-        <form action="" method="post"></form>
         <section class="table__body" action="">
-          <?php
-          displayTable();
-          ?>
+          <form action="" method="post">
+            <?php
+            displayTable();
+            ?>
+          </form>
         </section>
       </div>
     </section>
