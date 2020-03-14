@@ -140,7 +140,7 @@
         display: grid;
 
         grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-        grid-template-areas: "generic brand company dosage price menu";
+        grid-template-areas: "check generic brand company dosage price menu";
 
         justify-items: center;
         align-items: center;
@@ -178,8 +178,8 @@
           &.check {
             grid-area: check;
 
-            height: 2em;
-            width: 5em;
+            height: 1.5em;
+            width: 1.5em;
 
             background: #ffffff;
             border: 0.5px solid #c1c1c1;
@@ -237,9 +237,4 @@
       }
     }
   }
-}
-
-.reset-button{
-  border: none;
-  background-color: white;
 }
