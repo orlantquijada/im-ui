@@ -10,9 +10,15 @@ session_start();
 
   while ($row = mysqli_fetch_array($result)) {
     $table .=
+<<<<<<< HEAD
+    "
+    <div class='table__body__card'>
+      <div class='table__header__item check'>
+=======
       "
-    <div class='table__body__card' input type='submit' name='table-button' value='" . $row['id'] . "'>
+    <div class='table__body__card' input type='submit' name='table-button' id='" . $row['id'] . "'>
       <div class='table__body__card__item check '>
+>>>>>>> parent of 50ac44b... Update index.php
         <div></div>
       </div>
       <div class='table__body__card__item generic'>
@@ -31,27 +37,45 @@ session_start();
         <h1 class='name'>" . $row['price'] . "  </h1>
       </div>
       <div class='table__body__card__item menu'>
-        <img src='../static/3dots.svg' />
+        <button type='submit' name='buy' value='".$row['id']."'>Buy</button>
       </div>
     </div>
     ";
   }
 
 
-  $id = '';
-  if(isset($_GET['table-button'])){
-    $id = $_GET['table-button'];
+<<<<<<< HEAD
+  if(isset($_POST['buy'])){
+    
   }
-  $sql = "SELECT * FROM medicine WHERE id = '$id";
+  $id = '';
+  if(isset($_GET['buy'])){
+    $id = $_GET['buy'];
+  }
+=======
+function displayModal()
+{
+  $dochtml = new DOMDocument();
+  $dochtml->loadHTML("index.php");
+  $id = $dochtml->getElementById("1");
+  echo $id;
+  $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
+<<<<<<< HEAD
+>>>>>>> parent of 50ac44b... Update index.php
+=======
+>>>>>>> parent of 50ac44b... Update index.php
+  $sql = "SELECT * FROM medicine WHERE id = '$id'";
   $result = mysqli_query($con, $sql);
   $modal = "";
   $row = mysqli_fetch_array($result);
+<<<<<<< HEAD
+=======
   $modal .=
    "
   <form action='#' method='GET' class='table'>
     <div class='table__item generic'>
-      <h1 class='name'>Generic Name:</h1>
-      <h1 class='title'>".$row['generic_name']."</h1>
+      <h1 class='name'>".$row['generic_name']."</h1>
+      <h1 class='title'>Paracetamol</h1>
     </div>
 
     <div class='table__item brand'>
@@ -88,6 +112,9 @@ session_start();
   </form>
   ";
 
+  echo $modal;
+}
+>>>>>>> parent of 50ac44b... Update index.php
 
 
 
@@ -104,7 +131,6 @@ session_start();
 
   <link rel="stylesheet" href="../css/main.css" />
 
-  <script type="text/javascript" src="../js/index.js" async></script>
 </head>
 
 <body>
@@ -163,7 +189,11 @@ session_start();
             <h1 class="name">Price</h1>
           </div>
         </section>
+
+        <form action="" method="post"></form>
         <section class="table__body" action="">
+<<<<<<< HEAD
+<<<<<<< HEAD
           <form action="" method="post">
             <?php
             if(isset($table)){
@@ -171,6 +201,16 @@ session_start();
             };
             ?>
           </form>
+=======
+          <?php
+          displayTable();
+          ?>
+>>>>>>> parent of 50ac44b... Update index.php
+=======
+          <?php
+          displayTable();
+          ?>
+>>>>>>> parent of 50ac44b... Update index.php
         </section>
       </div>
     </section>
