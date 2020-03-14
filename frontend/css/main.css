@@ -292,7 +292,7 @@ ul {
   display: grid;
   -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "check generic brand company dosage price";
+      grid-template-areas: "quantity generic brand company dosage price";
   width: 90%;
   margin: 0 auto 1em auto;
   justify-items: center;
@@ -308,10 +308,10 @@ ul {
   text-transform: uppercase;
 }
 
-.main .table__header__item.check {
+.main .table__header__item.quantity {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: check;
+  grid-area: quantity;
   height: 1.5em;
   width: 1.5em;
   background-color: #ffffff;
@@ -324,31 +324,31 @@ ul {
   cursor: pointer;
 }
 
-.main .table__header__item.check--active {
+.main .table__header__item.quantity--active {
   background-color: #6646eb;
 }
 
 .main .table__header__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: generic;
 }
 
 .main .table__header__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 2;
   grid-area: brand;
 }
 
 .main .table__header__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
   grid-area: company;
 }
 
 .main .table__header__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 5;
+  -ms-grid-column: 4;
   grid-area: dosage;
 }
 
@@ -371,7 +371,7 @@ ul {
   display: grid;
   -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "check generic brand company dosage price menu";
+      grid-template-areas: "generic brand company dosage price menu";
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -404,12 +404,12 @@ ul {
   font-style: normal;
 }
 
-.main .table__body__card__item.check {
+.main .table__body__card__item.quantity {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: check;
-  height: 1.5em;
-  width: 1.5em;
+  grid-area: quantity;
+  height: 2em;
+  width: 5em;
   background: #ffffff;
   border: 0.5px solid #c1c1c1;
   -webkit-box-sizing: border-box;
@@ -420,32 +420,32 @@ ul {
   cursor: pointer;
 }
 
-.main .table__body__card__item.check--active {
+.main .table__body__card__item.quantity--active {
   background-color: #6646eb;
 }
 
 .main .table__body__card__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: generic;
   color: #6646eb;
 }
 
 .main .table__body__card__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 2;
   grid-area: brand;
 }
 
 .main .table__body__card__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
   grid-area: company;
 }
 
 .main .table__body__card__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 5;
+  -ms-grid-column: 4;
   grid-area: dosage;
 }
 
@@ -461,7 +461,7 @@ ul {
 
 .main .table__body__card__item.menu {
   -ms-grid-row: 1;
-  -ms-grid-column: 7;
+  -ms-grid-column: 6;
   grid-area: menu;
   cursor: pointer;
   display: -webkit-box;
@@ -489,6 +489,11 @@ ul {
 .main .table__body__card__item.menu:hover img {
   width: 40px;
   height: 40px;
+}
+
+.reset-button {
+  border: none;
+  background-color: white;
 }
 
 .right-side-bar {
@@ -946,6 +951,63 @@ ul {
   width: 100%;
   margin: 1em auto;
   border-top: 2px dashed black;
+}
+
+.login-site {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 250px;
+  width: 350px;
+  margin-top: 15%;
+  border-style: ridge;
+  font-weight: bolder;
+}
+
+.title {
+  margin: auto;
+}
+
+.register-button {
+  padding-left: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .left-side-bar__mid__function {
