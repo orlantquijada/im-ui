@@ -292,7 +292,7 @@ ul {
   display: grid;
   -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "quantity generic brand company dosage price";
+      grid-template-areas: "check generic brand company dosage price";
   width: 90%;
   margin: 0 auto 1em auto;
   justify-items: center;
@@ -306,18 +306,14 @@ ul {
   text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-.main .table__header__item.quantity {
-=======
 .main .table__header__item .name {
   font-size: 18px;
 }
 
 .main .table__header__item.check {
->>>>>>> 81122565d7ea8bebb4664f54c96da91807d31b72
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: quantity;
+  grid-area: check;
   height: 1.5em;
   width: 1.5em;
   background-color: #ffffff;
@@ -330,7 +326,7 @@ ul {
   cursor: pointer;
 }
 
-.main .table__header__item.quantity--active {
+.main .table__header__item.check--active {
   background-color: #6646eb;
 }
 
@@ -410,10 +406,10 @@ ul {
   font-style: normal;
 }
 
-.main .table__body__card__item.quantity {
+.main .table__body__card__item.check {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: quantity;
+  grid-area: check;
   height: 2em;
   width: 5em;
   background: #ffffff;
@@ -426,7 +422,7 @@ ul {
   cursor: pointer;
 }
 
-.main .table__body__card__item.quantity--active {
+.main .table__body__card__item.check--active {
   background-color: #6646eb;
 }
 
@@ -957,63 +953,6 @@ ul {
   width: 100%;
   margin: 1em auto;
   border-top: 2px dashed black;
-}
-
-.login-site {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.login-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 250px;
-  width: 350px;
-  margin-top: 15%;
-  border-style: ridge;
-  font-weight: bolder;
-}
-
-.title {
-  margin: auto;
-}
-
-.register-button {
-  padding-left: 5px;
-  text-decoration: none;
-  color: black;
-}
-
-.buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .left-side-bar__mid__function {

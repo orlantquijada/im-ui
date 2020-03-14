@@ -10,9 +10,11 @@ session_start();
 
   while ($row = mysqli_fetch_array($result)) {
     $table .=
-      "
-    <div class='table__body__card' id='" . $row['id'] . "'>
-      <input type='text' name='quantity' class='table__body__card__item quantity'>
+    "
+    <div class='table__body__card'>
+      <div class='table__header__item check'>
+        <div></div>
+      </div>
       <div class='table__body__card__item generic'>
         <h1 class='name'>" . $row['generic_name'] . "</h1>
       </div>
@@ -28,12 +30,17 @@ session_start();
       <div class='table__body__card__item price'>
         <h1 class='name'>" . $row['price'] . "  </h1>
       </div>
-      <button type='button' name='buy' value'".$row['id']."'>Buy</button>
+      <div class='table__body__card__item menu'>
+        <button type='submit' name='buy' value='".$row['id']."'>Buy</button>
+      </div>
     </div>
     ";
   }
 
 
+  if(isset($_POST['buy'])){
+    
+  }
   $id = '';
   if(isset($_GET['buy'])){
     $id = $_GET['buy'];
@@ -42,47 +49,8 @@ session_start();
   $result = mysqli_query($con, $sql);
   $modal = "";
   $row = mysqli_fetch_array($result);
-  $modal .=
-   "
-  <form action='#' method='GET' class='table'>
-    <div class='table__item generic'>
-      <h1 class='name'>Generic Name:</h1>
-      <h1 class='title'>".$row['generic_name']."</h1>
-    </div>
 
-    <div class='table__item brand'>
-      <h1 class='name'>Brand Name:</h1>
-      <h1 class='title'>".$row['brand_name']."</h1>
-    </div>
 
-    <div class='table__item company'>
-      <h1 class='name'>Company Name:</h1>
-      <h1 class='title'>".$row['company']."</h1>
-    </div>
-
-    <div class='table__item dosage'>
-      <h1 class='name'>Dosage:</h1>
-      <h1 class='title'>".$row['dosage']."</h1>
-    </div>
-  </form>
-
-  <form action='#' method='GET' class='table'>
-    <div class='table__item stocks'>
-      <h1 class='name'>Stocks Available:</h1>
-      <h1 class='title'>".$row['quantity']."</h1>
-    </div>
-
-    <div class='table__item quantity'>
-      <label for='qty' class='name'>Quantity:</label>
-      <input type='text' name='qty' id='qty' class='title' size='2' />
-    </div>
-
-    <div class='table__item price'>
-      <h1 class='name'>Price:</h1>
-      <h1 class='title'>15.00</h1>
-    </div>
-  </form>
-  ";
 
 ?>
 
@@ -156,7 +124,7 @@ session_start();
           </div>
         </section>
         <section class="table__body" action="">
-          <form name='table' action="" method="post">
+          <form action="" method="post">
             <?php
             if(isset($table)){
               echo $table;
