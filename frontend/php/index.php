@@ -1,18 +1,20 @@
 <?php
 session_start();
 
-$con = mysqli_connect("localhost", "root", "", "pharmacy_db")
-  or die("Error in connection");
-$sql = "SELECT * FROM medicine";
-$result = mysqli_query($con, $sql);
+  $con = mysqli_connect("localhost", "root", "", "pharmacy_db")
+    or die("Error in connection");
+  $sql = "SELECT * FROM medicine";
+  $result = mysqli_query($con, $sql);
 
-$table = "";
+  $table = "";
 
-while ($row = mysqli_fetch_array($result)) {
-  $table .=
-    "
+  while ($row = mysqli_fetch_array($result)) {
+    $table .=
+      "
     <div class='table__body__card' input type='submit' name='table-button' value='" . $row['id'] . "'>
-      <button type='button' name='table-button' class='table__body__card__button'>123</button>
+      <div class='table__body__card__item check '>
+        <div></div>
+      </div>
       <div class='table__body__card__item generic'>
         <h1 class='name'>" . $row['generic_name'] . "</h1>
       </div>
@@ -33,45 +35,45 @@ while ($row = mysqli_fetch_array($result)) {
       </div>
     </div>
     ";
-}
+  }
 
 
-$id = '';
-if (isset($_GET['table-button'])) {
-  $id = $_GET['table-button'];
-}
-$sql = "SELECT * FROM medicine WHERE id = '$id";
-$result = mysqli_query($con, $sql);
-$modal = "";
-$row = mysqli_fetch_array($result);
-$modal .=
-  "
+  $id = '';
+  if(isset($_GET['table-button'])){
+    $id = $_GET['table-button'];
+  }
+  $sql = "SELECT * FROM medicine WHERE id = '$id";
+  $result = mysqli_query($con, $sql);
+  $modal = "";
+  $row = mysqli_fetch_array($result);
+  $modal .=
+   "
   <form action='#' method='GET' class='table'>
     <div class='table__item generic'>
       <h1 class='name'>Generic Name:</h1>
-      <h1 class='title'>" . $row['generic_name'] . "</h1>
+      <h1 class='title'>".$row['generic_name']."</h1>
     </div>
 
     <div class='table__item brand'>
       <h1 class='name'>Brand Name:</h1>
-      <h1 class='title'>" . $row['brand_name'] . "</h1>
+      <h1 class='title'>".$row['brand_name']."</h1>
     </div>
 
     <div class='table__item company'>
       <h1 class='name'>Company Name:</h1>
-      <h1 class='title'>" . $row['company'] . "</h1>
+      <h1 class='title'>".$row['company']."</h1>
     </div>
 
     <div class='table__item dosage'>
       <h1 class='name'>Dosage:</h1>
-      <h1 class='title'>" . $row['dosage'] . "</h1>
+      <h1 class='title'>".$row['dosage']."</h1>
     </div>
   </form>
 
   <form action='#' method='GET' class='table'>
     <div class='table__item stocks'>
       <h1 class='name'>Stocks Available:</h1>
-      <h1 class='title'>" . $row['quantity'] . "</h1>
+      <h1 class='title'>".$row['quantity']."</h1>
     </div>
 
     <div class='table__item quantity'>
@@ -164,7 +166,7 @@ $modal .=
         <section class="table__body" action="">
           <form action="" method="post">
             <?php
-            if (isset($table)) {
+            if(isset($table)){
               echo $table;
             };
             ?>
@@ -172,14 +174,14 @@ $modal .=
         </section>
       </div>
     </section>
-
+    
 
     <!-- Modal Section -->
     <div class="modal">
       <div class="add-medicine">
         <span class="close">+</span>
         <?php
-        echo $modal;
+          echo $modal;
         ?>
         <form action="#" method="POST" class="cash-out">
           <div class="total">
