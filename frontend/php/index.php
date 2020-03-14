@@ -10,9 +10,15 @@ session_start();
 
   while ($row = mysqli_fetch_array($result)) {
     $table .=
+<<<<<<< HEAD
     "
     <div class='table__body__card'>
       <div class='table__header__item check'>
+=======
+      "
+    <div class='table__body__card' input type='submit' name='table-button' id='" . $row['id'] . "'>
+      <div class='table__body__card__item check '>
+>>>>>>> parent of 50ac44b... Update index.php
         <div></div>
       </div>
       <div class='table__body__card__item generic'>
@@ -38,6 +44,7 @@ session_start();
   }
 
 
+<<<<<<< HEAD
   if(isset($_POST['buy'])){
     
   }
@@ -45,10 +52,66 @@ session_start();
   if(isset($_GET['buy'])){
     $id = $_GET['buy'];
   }
+=======
+function displayModal()
+{
+  $dochtml = new DOMDocument();
+  $dochtml->loadHTML("index.php");
+  $id = $dochtml->getElementById("1");
+  echo $id;
+  $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
+>>>>>>> parent of 50ac44b... Update index.php
   $sql = "SELECT * FROM medicine WHERE id = '$id'";
   $result = mysqli_query($con, $sql);
   $modal = "";
   $row = mysqli_fetch_array($result);
+<<<<<<< HEAD
+=======
+  $modal .=
+   "
+  <form action='#' method='GET' class='table'>
+    <div class='table__item generic'>
+      <h1 class='name'>".$row['generic_name']."</h1>
+      <h1 class='title'>Paracetamol</h1>
+    </div>
+
+    <div class='table__item brand'>
+      <h1 class='name'>Brand Name:</h1>
+      <h1 class='title'>".$row['brand_name']."</h1>
+    </div>
+
+    <div class='table__item company'>
+      <h1 class='name'>Company Name:</h1>
+      <h1 class='title'>".$row['company']."</h1>
+    </div>
+
+    <div class='table__item dosage'>
+      <h1 class='name'>Dosage:</h1>
+      <h1 class='title'>".$row['dosage']."</h1>
+    </div>
+  </form>
+
+  <form action='#' method='GET' class='table'>
+    <div class='table__item stocks'>
+      <h1 class='name'>Stocks Available:</h1>
+      <h1 class='title'>".$row['quantity']."</h1>
+    </div>
+
+    <div class='table__item quantity'>
+      <label for='qty' class='name'>Quantity:</label>
+      <input type='text' name='qty' id='qty' class='title' size='2' />
+    </div>
+
+    <div class='table__item price'>
+      <h1 class='name'>Price:</h1>
+      <h1 class='title'>15.00</h1>
+    </div>
+  </form>
+  ";
+
+  echo $modal;
+}
+>>>>>>> parent of 50ac44b... Update index.php
 
 
 
@@ -123,7 +186,10 @@ session_start();
             <h1 class="name">Price</h1>
           </div>
         </section>
+
+        <form action="" method="post"></form>
         <section class="table__body" action="">
+<<<<<<< HEAD
           <form action="" method="post">
             <?php
             if(isset($table)){
@@ -131,6 +197,11 @@ session_start();
             };
             ?>
           </form>
+=======
+          <?php
+          displayTable();
+          ?>
+>>>>>>> parent of 50ac44b... Update index.php
         </section>
       </div>
     </section>
