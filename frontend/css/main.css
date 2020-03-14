@@ -273,7 +273,7 @@ ul {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 7em;
+  min-width: 7em;
   color: #b4b1bc;
   font-weight: normal;
   font-style: normal;
@@ -453,6 +453,10 @@ ul {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: price;
+}
+
+.main .table__body__card__item.button {
+  grid-area: button;
 }
 
 .main .table__body__card__item.menu {
