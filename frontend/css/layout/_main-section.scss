@@ -86,15 +86,21 @@
       align-items: center;
 
       &__item {
-        font-size: 14px;
-        line-height: 21px;
-
         color: #b4b1bc;
 
         text-transform: uppercase;
 
+<<<<<<< HEAD
         &.quantity {
           grid-area: quantity;
+=======
+        & .name {
+          font-size: 18px;
+        }
+
+        &.check {
+          grid-area: check;
+>>>>>>> 81122565d7ea8bebb4664f54c96da91807d31b72
 
           height: 1.5em;
           width: 1.5em;

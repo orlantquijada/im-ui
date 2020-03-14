@@ -302,13 +302,19 @@ ul {
 }
 
 .main .table__header__item {
-  font-size: 14px;
-  line-height: 21px;
   color: #b4b1bc;
   text-transform: uppercase;
 }
 
+<<<<<<< HEAD
 .main .table__header__item.quantity {
+=======
+.main .table__header__item .name {
+  font-size: 18px;
+}
+
+.main .table__header__item.check {
+>>>>>>> 81122565d7ea8bebb4664f54c96da91807d31b72
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: quantity;
