@@ -101,6 +101,8 @@
                 $all_medicine = mysqli_query($con, $sql);
                 
                 while ($row = mysqli_fetch_array($all_medicine)) {
+                  $price = number_format((float)$row['price'], 2);
+
                   echo 
                   "
                 <div class='table__body__card'>
@@ -120,7 +122,7 @@
                     <h1 class='name'>{$row['dosage']}</h1>
                   </div>
                   <div class='table__body__card__item price'>
-                    <h1 class='name'>{$row['price']}</h1>
+                    <h1 class='name'>{$price}</h1>
                   </div>
                   <div class='table__body__card__item menu'>
                     <img src='../static/3dots.svg' />
