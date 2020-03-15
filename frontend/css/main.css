@@ -332,25 +332,25 @@ ul {
 
 .main .table__header__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 1;
+  -ms-grid-column: 2;
   grid-area: generic;
 }
 
 .main .table__header__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 3;
   grid-area: brand;
 }
 
 .main .table__header__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 4;
   grid-area: company;
 }
 
 .main .table__header__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 5;
   grid-area: dosage;
 }
 
@@ -373,7 +373,7 @@ ul {
   display: grid;
   -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
       grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "generic brand company dosage price menu";
+      grid-template-areas: "check generic brand company dosage price menu";
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -410,8 +410,8 @@ ul {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: check;
-  height: 2em;
-  width: 5em;
+  height: 1.5em;
+  width: 1.5em;
   background: #ffffff;
   border: 0.5px solid #c1c1c1;
   -webkit-box-sizing: border-box;
@@ -428,26 +428,26 @@ ul {
 
 .main .table__body__card__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 1;
+  -ms-grid-column: 2;
   grid-area: generic;
   color: #6646eb;
 }
 
 .main .table__body__card__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 3;
   grid-area: brand;
 }
 
 .main .table__body__card__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 4;
   grid-area: company;
 }
 
 .main .table__body__card__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 5;
   grid-area: dosage;
 }
 
@@ -463,7 +463,7 @@ ul {
 
 .main .table__body__card__item.menu {
   -ms-grid-row: 1;
-  -ms-grid-column: 6;
+  -ms-grid-column: 7;
   grid-area: menu;
   cursor: pointer;
   display: -webkit-box;
