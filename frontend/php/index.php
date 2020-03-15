@@ -9,30 +9,32 @@ function printTable(){
     $print .=
     "
       <div class='table__body__card'>
-        <div class='table__body__card__item check'>
-          <div></div>
-        </div>
         <div class='table__body__card__item generic'>
           <h1 class='name'>".$row['generic_name']."</h1>
         </div>
         <div class='table__body__card__item brand'>
-          <h1 class='name'>".$row['brand_name']."<</h1>
+          <h1 class='name'>".$row['brand_name']."</h1>
         </div>
         <div class='table__body__card__item company'>
-          <h1 class='name'>".$row['company']."<</h1>
+          <h1 class='name'>".$row['company']."</h1>
         </div>
         <div class='table__body__card__item dosage'>
-          <h1 class='name'>".$row['dosage']."<</h1>
+          <h1 class='name'>".$row['dosage']."</h1>
         </div>
         <div class='table__body__card__item price'>
-          <h1 class='name'>".$row['price']."<</h1>
+          <h1 class='name'>".$row['price']."</h1>
         </div>
-        <div class='table__body__card__item menu'>
-          <img src='../static/3dots.svg' />
+        <div class='table__body__card__item quantity'>
+          <input type='text' name='quantity' class='text'>
         </div>
+        <button type='button' class='table__body__card__item button'>
+          <h1 class='name'>Add</h1>
+        </button>
       </div>
     ";
   }
+
+  echo $print;
 }
 ?>
 
@@ -102,14 +104,11 @@ function printTable(){
               placeholder="Search"
             />
           </div>
-          <h1 class="search__results-count">25 results</h1>
+          
         </div>
 
         <div class="table">
           <section class="table__header">
-            <div class="table__header__item check">
-              <div></div>
-            </div>
             <div class="table__header__item generic">
               <h1 class="name">Generic Name</h1>
             </div>
@@ -122,35 +121,18 @@ function printTable(){
             <div class="table__header__item dosage">
               <h1 class="name">Dosage</h1>
             </div>
+            <div class="table__header__item quantity">
+              <h1 class="name">Quantity</h1>
+            </div>
             <div class="table__header__item price">
               <h1 class="name">Price</h1>
             </div>
           </section>
 
           <section class="table__body">
-            <div class="table__body__card">
-              <div class="table__body__card__item check">
-                <div></div>
-              </div>
-              <div class="table__body__card__item generic">
-                <h1 class="name">Paracetamol</h1>
-              </div>
-              <div class="table__body__card__item brand">
-                <h1 class="name">Biogesic</h1>
-              </div>
-              <div class="table__body__card__item company">
-                <h1 class="name">UNILAB</h1>
-              </div>
-              <div class="table__body__card__item dosage">
-                <h1 class="name">15 ml</h1>
-              </div>
-              <div class="table__body__card__item price">
-                <h1 class="name">15.00</h1>
-              </div>
-              <div class="table__body__card__item menu">
-                <img src="../static/3dots.svg" />
-              </div>
-            </div>
+            <?php
+            printTable();
+            ?>
           </section>
         </div>
       </section>

@@ -76,8 +76,9 @@
     &__header {
       display: grid;
 
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "check generic brand company dosage price";
+
+      grid-template-columns: 0.5fr 1.8fr 1fr 1.5fr 0.8fr 0.5fr 0.3fr 0.1fr;
+      grid-template-areas: "generic brand company dosage price quantity button";
 
       width: 90%;
       margin: 0 auto 1em auto;
@@ -93,25 +94,6 @@
        & .name {
           font-size: 18px;
         }
-
-        &.check {
-          grid-area: check;
-
-          height: 1.5em;
-          width: 1.5em;
-
-          background-color: #ffffff;
-          border: 0.5px solid #c1c1c1;
-          box-sizing: border-box;
-          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-          border-radius: 7px;
-
-          cursor: pointer;
-
-          &--active {
-            background-color: $main-purple;
-          }
-        }
         &.generic {
           grid-area: generic;
         }
@@ -123,6 +105,9 @@
         }
         &.dosage {
           grid-area: dosage;
+        }
+        &.quantity{
+          grid-area: quantity;
         }
         &.price {
           grid-area: price;
@@ -139,13 +124,13 @@
       &__card {
         display: grid;
 
-        grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-        grid-template-areas: "check generic brand company dosage price menu";
+        grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
+        grid-template-areas: "generic brand company dosage price quantity button";
 
         justify-items: center;
         align-items: center;
 
-        width: 90%;
+        width: 95%;
         height: 60px;
 
         transition: width 500ms ease;
@@ -175,24 +160,6 @@
             font-style: normal;
           }
 
-          &.check {
-            grid-area: check;
-
-            height: 1.5em;
-            width: 1.5em;
-
-            background: #ffffff;
-            border: 0.5px solid #c1c1c1;
-            box-sizing: border-box;
-            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 7px;
-
-            cursor: pointer;
-
-            &--active {
-              background-color: $main-purple;
-            }
-          }
           &.generic {
             grid-area: generic;
 
@@ -212,29 +179,18 @@
           }
           &.button{
             grid-area: button;
+            background-color: yellow;;
           }
-          &.menu {
-            grid-area: menu;
-            cursor: pointer;
+          &.quantity {
+            grid-area: quantity;
 
-            @include flexbox;
-
-            & img {
-              width: 25px;
-              height: 25px;
-
-              transition: all 200ms ease;
-            }
-
-            &:hover {
-              img {
-                width: 40px;
-                height: 40px;
-              }
-            }
           }
         }
       }
     }
   }
+}
+
+button{
+  border: none;
 }

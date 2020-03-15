@@ -290,9 +290,9 @@ ul {
 .main .table__header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "check generic brand company dosage price";
+  -ms-grid-columns: 0.5fr 1.8fr 1fr 1.5fr 0.8fr 0.5fr 0.3fr 0.1fr;
+      grid-template-columns: 0.5fr 1.8fr 1fr 1.5fr 0.8fr 0.5fr 0.3fr 0.1fr;
+      grid-template-areas: "generic brand company dosage price quantity button";
   width: 90%;
   margin: 0 auto 1em auto;
   justify-items: center;
@@ -310,48 +310,34 @@ ul {
   font-size: 18px;
 }
 
-.main .table__header__item.check {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: check;
-  height: 1.5em;
-  width: 1.5em;
-  background-color: #ffffff;
-  border: 0.5px solid #c1c1c1;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-.main .table__header__item.check--active {
-  background-color: #6646eb;
-}
-
 .main .table__header__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: generic;
 }
 
 .main .table__header__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 2;
   grid-area: brand;
 }
 
 .main .table__header__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
   grid-area: company;
 }
 
 .main .table__header__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 5;
+  -ms-grid-column: 4;
   grid-area: dosage;
+}
+
+.main .table__header__item.quantity {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: quantity;
 }
 
 .main .table__header__item.price {
@@ -371,14 +357,14 @@ ul {
 .main .table__body__card {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 1fr 0.5fr 0.3fr;
-      grid-template-areas: "check generic brand company dosage price menu";
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
+      grid-template-areas: "generic brand company dosage price quantity button";
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 90%;
+  width: 95%;
   height: 60px;
   -webkit-transition: width 500ms ease;
   transition: width 500ms ease;
@@ -406,48 +392,28 @@ ul {
   font-style: normal;
 }
 
-.main .table__body__card__item.check {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: check;
-  height: 1.5em;
-  width: 1.5em;
-  background: #ffffff;
-  border: 0.5px solid #c1c1c1;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-.main .table__body__card__item.check--active {
-  background-color: #6646eb;
-}
-
 .main .table__body__card__item.generic {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: generic;
   color: #6646eb;
 }
 
 .main .table__body__card__item.brand {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 2;
   grid-area: brand;
 }
 
 .main .table__body__card__item.company {
   -ms-grid-row: 1;
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
   grid-area: company;
 }
 
 .main .table__body__card__item.dosage {
   -ms-grid-row: 1;
-  -ms-grid-column: 5;
+  -ms-grid-column: 4;
   grid-area: dosage;
 }
 
@@ -458,39 +424,20 @@ ul {
 }
 
 .main .table__body__card__item.button {
-  grid-area: button;
-}
-
-.main .table__body__card__item.menu {
   -ms-grid-row: 1;
   -ms-grid-column: 7;
-  grid-area: menu;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  grid-area: button;
+  background-color: yellow;
 }
 
-.main .table__body__card__item.menu img {
-  width: 25px;
-  height: 25px;
-  -webkit-transition: all 200ms ease;
-  transition: all 200ms ease;
+.main .table__body__card__item.quantity {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: quantity;
 }
 
-.main .table__body__card__item.menu:hover img {
-  width: 40px;
-  height: 40px;
+button {
+  border: none;
 }
 
 .right-side-bar {
