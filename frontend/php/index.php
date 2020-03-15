@@ -8,7 +8,8 @@ function printTable(){
   while($row = mysqli_fetch_array($result)){
     $print .=
     "
-      <div class='table__body__card'>
+      <form name='medicine' action='' method='POST' class='table__body__card'>
+        <input type='text' name='id' value='".$row['id']."' input style='display: none;'>
         <div class='table__body__card__item generic'>
           <h1 class='name'>".$row['generic_name']."</h1>
         </div>
@@ -27,15 +28,33 @@ function printTable(){
         <div class='table__body__card__item quantity'>
           <input type='text' name='quantity' class='text'>
         </div>
-        <button type='button' class='table__body__card__item button'>
-          <h1 class='name'>Add</h1>
-        </button>
-      </div>
+        <input type='submit' name='add_button' class='table__body__card__item button' value='Add'>
+       </form>
     ";
   }
 
   echo $print;
 }
+
+$con = mysqli_connect("localhost", "root", "", "pharmacy_db")
+    or die ("Error in connection");
+
+if(isset($_POST['add_button'])){
+  $quantity = $_POST['quantity'];
+  $id = $_POST['id'];
+  $sql = "SELECT * FROM medicine WHERE id = '$id'";
+
+  $result = mysqli_query($con, $sql);
+  $row = mysqli_fetch_array($result);
+
+  $table="";
+  $table.="
+  <p> ".$row['brand_name']." ".$row['generic_name']." ".$row['price']."
+  ";
+
+  echo $table;
+}
+
 ?>
 
 <!DOCTYPE html>

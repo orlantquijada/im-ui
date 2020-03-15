@@ -94,6 +94,10 @@
        & .name {
           font-size: 18px;
         }
+
+        & .text{
+          width: 1.5em;
+        }
         &.generic {
           grid-area: generic;
         }
@@ -160,6 +164,14 @@
             font-style: normal;
           }
 
+          & .hide-text{
+            display: none;
+          }
+
+          & .text{
+            width: 6em;
+          }
+
           &.generic {
             grid-area: generic;
 
@@ -178,19 +190,20 @@
             grid-area: price;
           }
           &.button{
+            border: none;
+            border-radius: .8em;
             grid-area: button;
-            background-color: yellow;;
+            background-color: $main-purple;
+            width: 7em;
+            height: 3em;
+            color: white;
           }
           &.quantity {
             grid-area: quantity;
-
+            width: 2.5em;
           }
         }
       }
     }
   }
-}
-
-button{
-  border: none;
 }
