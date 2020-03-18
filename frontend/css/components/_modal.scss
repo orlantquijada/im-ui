@@ -52,6 +52,11 @@
 
       color: rgba(61, 62, 64, 0.7);
 
+  
+      & .hide-text{
+        display: none;
+      }
+
       &__item {
         display: grid;
 
@@ -76,23 +81,7 @@
 
       color: rgba(61, 62, 64, 0.7);
 
-      @include flexbox($justify: space-between);
-
-      .total {
-        width: 30%;
-        height: 48px;
-
-        @include flexbox($justify: space-between);
-
-        h1 {
-          font-size: 24px;
-        }
-
-        h1.name {
-          font-weight: normal;
-          font-style: normal;
-        }
-      }
+      @include flexbox($justify: flex-end);
 
       .buttons {
         width: 45%;

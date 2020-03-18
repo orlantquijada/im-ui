@@ -235,6 +235,7 @@ ul {
 .main .search__main__name {
   width: 80%;
   border: none;
+  outline: none;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -290,9 +291,9 @@ ul {
 .main .table__header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.8fr 1fr 1.5fr 0.8fr 0.5fr 0.3fr 0.1fr;
-      grid-template-columns: 0.5fr 1.8fr 1fr 1.5fr 0.8fr 0.5fr 0.3fr 0.1fr;
-      grid-template-areas: "generic brand company dosage price quantity button";
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.4fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.4fr;
+      grid-template-areas: "generic brand company dosage price";
   width: 90%;
   margin: 0 auto 1em auto;
   justify-items: center;
@@ -308,10 +309,15 @@ ul {
 
 .main .table__header__item .name {
   font-size: 18px;
+  cursor: pointer;
 }
 
 .main .table__header__item .text {
   width: 1.5em;
+}
+
+.main .table__header__item .text:hover {
+  font-weight: bold;
 }
 
 .main .table__header__item.generic {
@@ -339,8 +345,6 @@ ul {
 }
 
 .main .table__header__item.quantity {
-  -ms-grid-row: 1;
-  -ms-grid-column: 6;
   grid-area: quantity;
 }
 
@@ -359,11 +363,12 @@ ul {
 }
 
 .main .table__body__card {
+  cursor: default;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.1fr;
-      grid-template-areas: "generic brand company dosage price quantity button";
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
+      grid-template-areas: "generic brand company dosage price";
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -375,6 +380,34 @@ ul {
   margin: 0 auto;
   background-color: #ffffff;
   border-radius: 1em;
+}
+
+.main .table__body__card--unavailable {
+  cursor: default;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
+      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
+      grid-template-areas: "generic brand company dosage price";
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 95%;
+  height: 60px;
+  -webkit-transition: width 500ms ease;
+  transition: width 500ms ease;
+  margin: 0 auto;
+  background-color: #EEE2E2;
+  border-radius: 1em;
+}
+
+.main .table__body__card--unavailable:hover {
+  background-color: #EEE2E2;
+  cursor: pointer;
+  width: 92%;
+  height: 70px;
+  margin: 5px auto;
 }
 
 .main .table__body__card:hover {
@@ -394,10 +427,6 @@ ul {
   line-height: 21px;
   font-weight: normal;
   font-style: normal;
-}
-
-.main .table__body__card__item .hide-text {
-  display: none;
 }
 
 .main .table__body__card__item .text {
@@ -436,22 +465,15 @@ ul {
 }
 
 .main .table__body__card__item.button {
+  cursor: pointer;
+  outline: none;
   border: none;
   border-radius: .8em;
-  -ms-grid-row: 1;
-  -ms-grid-column: 7;
   grid-area: button;
   background-color: #6646eb;
   width: 7em;
   height: 3em;
   color: white;
-}
-
-.main .table__body__card__item.quantity {
-  -ms-grid-row: 1;
-  -ms-grid-column: 6;
-  grid-area: quantity;
-  width: 2.5em;
 }
 
 .right-side-bar {
@@ -1025,6 +1047,10 @@ ul {
   color: rgba(61, 62, 64, 0.7);
 }
 
+.modal .add-medicine .table .hide-text {
+  display: none;
+}
+
 .modal .add-medicine .table__item {
   display: -ms-grid;
   display: grid;
@@ -1053,40 +1079,13 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-}
-
-.modal .add-medicine .cash-out .total {
-  width: 30%;
-  height: 48px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.modal .add-medicine .cash-out .total h1 {
-  font-size: 24px;
-}
-
-.modal .add-medicine .cash-out .total h1.name {
-  font-weight: normal;
-  font-style: normal;
 }
 
 .modal .add-medicine .cash-out .buttons {
