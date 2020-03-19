@@ -73,16 +73,6 @@ while ($row = mysqli_fetch_array($result)) {
           <img src="../static/box--inactive.svg" class="left-side-bar__mid__function__logo" />
           <h1 class="left-side-bar__mid__function__name">Inventory</h1>
         </a>
-
-        <a href="#" class="left-side-bar__mid__function">
-          <img src="../static/feedback.svg" class="left-side-bar__mid__function__logo" />
-          <h1 class="left-side-bar__mid__function__name">Messages</h1>
-        </a>
-
-        <a href="#" class="left-side-bar__mid__function">
-          <img src="../static/adjust.svg" class="left-side-bar__mid__function__logo" />
-          <h1 class="left-side-bar__mid__function__name">Settings</h1>
-        </a>
       </section>
     </section>
 
@@ -112,6 +102,9 @@ while ($row = mysqli_fetch_array($result)) {
           ?>
         </section>
       </div>
+      <section class='cart'>
+        <input type='submit' value='pay'>
+      </section>
     </section>
 
     <!-- Modal Section -->
@@ -172,7 +165,7 @@ while ($row = mysqli_fetch_array($result)) {
                         <h1>Cancel</h1>
                       </button>
                       <div class='submit'>
-                        <input type='submit' class='submit' value='Confirm'>
+                        <input name ='purchase' type='submit' class='submit' value='Confirm'>
                       </div>
                     </div>
                   </form>
@@ -181,6 +174,12 @@ while ($row = mysqli_fetch_array($result)) {
               ";
     }
     echo $modal;
+
+    if(isset($_POST['purchase'])){
+      if(!empty($_POST['qty'])){
+        $quantity = $_POST['quantity'];
+      }
+    }
     ?>
 
   </div>
