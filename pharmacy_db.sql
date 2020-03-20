@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 11:34 PM
+-- Generation Time: Mar 20, 2020 at 03:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,13 +43,29 @@ CREATE TABLE `employee` (
 
 CREATE TABLE `medicine` (
   `id` int(11) NOT NULL,
-  `branch_name` varchar(100) NOT NULL,
+  `branch_name` varchar(100) NOT NULL DEFAULT '',
   `company` varchar(100) NOT NULL,
   `generic_name` varchar(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `dosage` varchar(30) NOT NULL
+  `dosage` varchar(30) NOT NULL,
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `medicine`
+--
+
+INSERT INTO `medicine` (`id`, `branch_name`, `company`, `generic_name`, `brand_name`, `quantity`, `dosage`, `price`) VALUES
+(1, 'Punta Princesa', 'asdfcompan', 'generic123adsfqwe1', '$brand_name', 232, '$dosage', 123),
+(2, 'Punta Princesa', 'Company Name', 'Generic12345', 'Branch', 125, '30 ml', 121),
+(3, '', 'company1', 'generic1', 'brand1', 123, 'dosage', 321),
+(4, '', '{$add_company_name}', '{$add_generic_name}', '{$add_brand_name}', 2, '{$add_dosage}', 1),
+(5, '', '2', '1', '3', 6, '4', 5),
+(6, '', 'com', 'gen', 'bran', 2, 'dos', 1),
+(7, '', 'com', 'gen', 'bran', 2, 'dos', 1),
+(8, '', '4', '3', '5', 8, '6', 7),
+(9, '', '4', '3', '5', 8, '6', 7);
 
 -- --------------------------------------------------------
 
@@ -124,7 +140,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ordered_item`
@@ -136,7 +152,7 @@ ALTER TABLE `ordered_item`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -159,4 +175,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
--- asdf
