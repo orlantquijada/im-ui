@@ -1,9 +1,14 @@
 <?php
+
 function money($value)
 {
   if ($value < 0) return "-" . money(-$value);
   return '₱' . number_format($value, 2);
 }
+
+$con = mysqli_connect('localhost','root','','pharmacy_db')
+or die('Error connecting to MySQL server.');
+
 ?>
 
 <!DOCTYPE html>
