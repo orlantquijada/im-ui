@@ -1,0 +1,25 @@
+#inventory.main {
+  & .table__header {
+    display: grid;
+
+    grid-template-columns: $grid-table-fractions;
+    grid-template-areas: "generic brand company dosage price quantity";
+
+    &.quantity {
+      grid-area: quantity;
+    }
+  }
+
+  & .table__body {
+    &__card {
+      display: grid;
+
+      grid-template-columns: $grid-table-fractions;
+      grid-template-areas: "generic brand company dosage price quantity menu";
+
+      &.quantity {
+        grid-area: quantity;
+      }
+    }
+  }
+}

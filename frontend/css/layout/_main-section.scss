@@ -25,6 +25,18 @@
       flex-grow: 1;
       @include flexbox($justify: flex-start);
 
+      .btn {
+        border: none;
+        background: none;
+        padding: 0;
+
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
       &__logo {
         margin-right: 1em;
         transform: scaleX(-1);
@@ -151,6 +163,7 @@
         transition: width 500ms ease;
 
         margin: 0 auto;
+        padding-right: 1em;
 
         background-color: #ffffff;
         border-radius: 1em;

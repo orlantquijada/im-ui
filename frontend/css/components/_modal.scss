@@ -1,3 +1,14 @@
+.close {
+  position: absolute;
+  right: 0.5em;
+  top: 0;
+
+  font-size: 42px;
+
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -7,10 +18,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 20;
 
   @include flexbox;
-
   display: none;
+
+  &--show {
+    display: flex;
+  }
 
   .add-medicine {
     height: 50vh;
@@ -23,17 +38,6 @@
     border-radius: 1em;
 
     @include flexbox($direction: column);
-
-    .close {
-      position: absolute;
-      right: 0.5em;
-      top: 0;
-
-      font-size: 42px;
-
-      transform: rotate(45deg);
-      cursor: pointer;
-    }
 
     & .table {
       transform: translateY(-1.5em);
@@ -131,6 +135,111 @@
 
           h1 {
             font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.MedicineModal {
+  height: 640px;
+  width: 600px;
+
+  background-color: #f2f5fa;
+  border-radius: 32px;
+
+  @include flexbox($direction: column);
+
+  .header {
+    height: 10%;
+    width: 100%;
+
+    color: #94919a;
+    // border-bottom: 1px solid black;
+    box-shadow: 0 8px 12px rgba(131, 147, 155, 0.25);
+
+    @include flexbox;
+
+    .title {
+      font-size: 20px;
+      font-weight: $semi-bold;
+    }
+  }
+
+  .form {
+    width: 100%;
+    flex-grow: 1;
+
+    padding: 48px 62px;
+
+    @include flexbox($justify: space-between, $direction: column);
+
+    &__main {
+      width: 100%;
+
+      &__form-item {
+        margin-bottom: 2em;
+        @include flexbox($justify: space-between);
+
+        .title {
+          font-size: 22px;
+          color: #737178;
+          font-weight: $normal;
+        }
+
+        .input {
+          font-size: 16px;
+          font-weight: $semi-bold;
+          line-height: 32px;
+          color: #737178;
+
+          outline: 0;
+          border-width: 0 0 1px 0;
+          border-color: #c1c3c5;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .buttons {
+      width: 100%;
+
+      &__main {
+        @include flexbox($justify: flex-end);
+      }
+
+      .btn {
+        width: 180px;
+        height: 44px;
+
+        border: none;
+        border-radius: 0.5em;
+
+        cursor: pointer;
+
+        transition: background-color 400ms ease;
+
+        h1 {
+          font-size: 18px;
+          font-weight: $semi-bold;
+        }
+
+        &.cancel {
+          background-color: #dee0e4;
+          margin-right: 1em;
+
+          &:hover {
+            background-color: #caccd0;
+          }
+        }
+
+        &.submit {
+          background-color: #98d838;
+          color: $white-purple;
+
+          &:hover {
+            background-color: #8bc731;
           }
         }
       }
