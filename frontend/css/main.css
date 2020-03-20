@@ -995,7 +995,7 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  display: none;
+  display: flex;
 }
 
 .modal .add-medicine {

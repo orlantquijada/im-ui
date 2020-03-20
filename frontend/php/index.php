@@ -4,43 +4,6 @@ function money($value)
   if ($value < 0) return "-" . money(-$value);
   return '₱' . number_format($value, 2);
 }
-$con = mysqli_connect("localhost", "root", "", "pharmacy_db");
-$sql = "SELECT * FROM medicine";
-$result = mysqli_query($con, $sql);
-$print = "";
-while ($row = mysqli_fetch_array($result)) {
-  if ($row['quantity'] == 0) {
-    $print .=
-      "
-    <div class='table__body__card--unavailable' onclick = 'return unavailable()'>
-    ";
-  } else {
-    $print .=
-      "<div class='table__body__card' onclick = 'return displayModal(" . $row['id'] . ")'>
-    ";
-  }
-  $print .=
-    "
-      
-        <div class='table__body__card__item generic'>
-          <h1 class='name'>" . $row['generic_name'] . "</h1>
-        </div>
-        <div class='table__body__card__item brand'>
-          <h1 class='name'>" . $row['brand_name'] . "</h1>
-        </div>
-        <div class='table__body__card__item company'>
-          <h1 class='name'>" . $row['company'] . "</h1>
-        </div>
-        <div class='table__body__card__item dosage'>
-          <h1 class='name'>" . $row['dosage'] . "</h1>
-        </div>
-        <div class='table__body__card__item price'>
-          <h1 class='name'>" . money($row['price']) . "</h1>
-        </div>
-      </div>
-    ";
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +60,46 @@ while ($row = mysqli_fetch_array($result)) {
 
         <section class="table__body">
           <?php
+          $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
+          $sql = "SELECT * FROM medicine";
+          $result = mysqli_query($con, $sql);
+          $print = "";
+          while ($row = mysqli_fetch_array($result)) {
+            if ($row['quantity'] <= 0) {
+              $print .=
+                "
+              <div class='table__body__card--unavailable' onclick = 'return unavailable()'>
+                ";
+            } else {
+              $print .=
+                "
+                <a href='index.php?edit=1&id=" . $row['id'] . "'>
+                <div class='table__body__card' onclick>
+                ";
+            }
+            $print .=
+              "
+                <div class='table__body__card__item generic'>
+                  <h1 class='name'>" . $row['generic_name'] . "</h1>
+                </div>
+                <div class='table__body__card__item brand'>
+                  <h1 class='name'>" . $row['brand_name'] . "</h1>
+                </div>
+                <div class='table__body__card__item company'>
+                  <h1 class='name'>" . $row['company'] . "</h1>
+                </div>
+                <div class='table__body__card__item dosage'>
+                  <h1 class='name'>" . $row['dosage'] . "</h1>
+                </div>
+                <div class='table__body__card__item price'>
+                  <h1 class='name'>" . money($row['price']) . "</h1>
+                </div>
+              </div>
+              ";
+            if($row['quantity'] != 0){
+              $print .= "</a>";
+            }
+          }
           echo $print;
           ?>
         </section>
@@ -155,111 +158,110 @@ while ($row = mysqli_fetch_array($result)) {
           <h1 class="name">TOTAL:</h1>
           <h1 class="number">200.00</h1>
         </section>
-        <?php
-        $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
-        $sql = "SELECT * FROM transaction WHERE is_payed='false'";
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
-        $transaction="";
-        if($row == NULL){
-          $sql = "INSERT INTO `transaction` (`datetime_purchased`,`employee_id`, `is_payed`) VALUES (getDate(),'1', '0');";
-          
-        }
-        ?>
-        <div class='pay-section'>
-          <input type='submit' value='pay'>
-        </div>
       </section>
     </section>
-  </div>
   </section>
-
-
-
   <!-- Modal Section -->
   <?php
-  $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
-  $sql = "SELECT * FROM medicine";
-  $result = mysqli_query($con, $sql);
-  $modal = "";
-  while ($row = mysqli_fetch_array($result)) {
-    $modal .=
-      "
-              <div class='modal' id='" . $row['id'] . "'>
-              <div class='add-medicine'>
-                <span class='close'>+</span>
-                  <form action='#' method='GET' class='table'>
-                    <input type='text' name = 'id' value='" . $row['id'] . "' style='display:none'>
-                    <div class='table__item generic'>
-                      <h1 class='name'>Generic Name:</h1>
-                      <h1 class='title'>" . $row['generic_name'] . "</h1>
-                    </div>
-          
-                    <div class='table__item brand'>
-                      <h1 class='name'>Brand Name:</h1>
-                      <h1 class='title'>" . $row['brand_name'] . "</h1>
-                    </div>
-            
-                    <div class='table__item company'>
-                      <h1 class='name'>Company Name:</h1>
-                      <h1 class='title'>" . $row['company'] . "</h1>
-                    </div>
-            
-                    <div class='table__item dosage'>
-                      <h1 class='name'>Dosage:</h1>
-                      <h1 class='title'>" . $row['dosage'] . "</h1>
-                    </div>
-                  </form>
-          
-                  <form action='#' method='GET' class='table'>
-                    <div class='table__item stocks'>
-                      <h1 class='name'>Stocks Available:</h1>
-                      <h1 class='title'>" . $row['quantity'] . "</h1>
-                    </div>
-            
-                    <div class='table__item quantity'>
-                      <label for='qty' class='name'>Quantity:</label>
-                      <input type='text' name='qty' id='qty' class='title' size='2' />
-                    </div>
-          
-                    <div class='table__item price'>
-                      <h1 class='name'>Price:</h1>
-                      <h1 class='title'>" . money($row['price']) . "</h1>
-                    </div>
-                  </form>
-            
-                  <form action='#' method='POST' class='cash-out'>
-                    <div class='buttons'>
-                      <button type='reset' class='cancel'>
-                        <h1>Cancel</h1>
-                      </button>
-                      <div class='submit'>
-                        <input name ='purchase' type='submit' class='submit' value='Confirm'>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-            </div>
-              ";
-  }
-  echo $modal;
+   $con = mysqli_connect('localhost','root','','pharmacy_db')
+   or die('Error connecting to MySQL server.');
+  
+    $is_edit = false;
+  
+    try {
+      @$is_edit = (bool)$_GET['edit'];
+    } catch (Exception $e) {}
+   
+    if ($is_edit) {
+      $id = $_GET['id'];
+      $sql = "SELECT * FROM medicine WHERE id= '$id'";
+      echo $id;
+      $result = mysqli_query($con, $sql);
+      $row = mysqli_fetch_array($result);
 
-  if (isset($_POST['purchase'])) {
-    if (!empty($_POST['qty'])) {
-      $quantity = $_POST['quantity'];
+        echo 
+          "
+          <div class='modal'>
+            <div class='add-medicine'>
+              <span class='close'>+</span>
+              <form action='#' method='get' class='table'>
+                <input type='text' name = 'id' value='{" . $row['id'] . "}' style='display:none'>
+                <div class='table__item generic'>
+                  <h1 class='name'>Generic Name:</h1>
+                  <h1 class='title'>" . $row['generic_name'] . "</h1>
+                </div>
+      
+                <div class='table__item brand'>
+                  <h1 class='name'>Brand Name:</h1>
+                  <h1 class='title'>" . $row['brand_name'] . "</h1>
+                </div>
+        
+                <div class='table__item company'>
+                  <h1 class='name'>Company Name:</h1>
+                  <h1 class='title'>" . $row['company'] . "</h1>
+                </div>
+        
+                <div class='table__item dosage'>
+                  <h1 class='name'>Dosage:</h1>
+                  <h1 class='title'>" . $row['dosage'] . "</h1>
+                </div>
+              </form>
+      
+              <form action='#' name='modal-form' method='GET' class='table'>
+                <div class='table__item stocks'>
+                  <h1 class='name'>Stocks Available:</h1>
+                  <h1 class='title'>" . $row['quantity'] . "</h1>
+                </div>
+        
+                <div class='table__item quantity'>
+                  <label for='qty' class='name'>Quantity:</label>
+                  <input type='text' name='quantity' id='qty' class='title' value='2'  size='2' />
+                </div>
+      
+                <div class='table__item price'>
+                  <h1 class='name'>Price:</h1>
+                  <h1 class='title'>" . money($row['price']) . "</h1>
+                </div>
+                
+                <div class='buttons'>
+                  <button type='reset' class='cancel'>
+                    <h1>Cancel</h1>
+                  </button>
+                  <div class='submit'>
+                      <input type='submit' class='submit' name='confirm-button' value='Confirm'>
+                  </div>
+                </div>
+              </form>
+            </div>
+          ";
+    
+    if(isset($_GET['confirm-button'])){
+      $quantity = $_GET['quantity'];
+      $sql = "SELECT * FROM transaction WHERE is_payed = 'false'";
+      $result = mysqli_query($con, $sql);
+      $row = mysqli_fetch_array($result);
+      if($row == NULL){ //create new transaction
+        $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($result);
+        $transaction_id = $row['id'];
+      }
+      else{ //select older transaction
+        $transaction_id = $row['id'];
+        $sql = "INSERT INTO ordered_item (medicine_id, transaction_id, quantity) VALUES ('$id','$transaction_id','$quantity')";
+        $result = mysqli_query($con, $sql) or die ("123");
+        echo("145");
+      }
     }
   }
+
   ?>
 
   </div>
-  </div>
+</div>
 
   <script language="Javascript">
     let modal = document.querySelector(".modal");
-
-    function displayModal(e) {
-      document.getElementById(e).style.display = "flex";
-    }
 
     document.querySelector(".close").addEventListener("click", event => {
       modal.style.display = "none";

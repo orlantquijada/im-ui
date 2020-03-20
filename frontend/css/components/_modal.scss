@@ -10,7 +10,7 @@
 
   @include flexbox;
 
-  display: none;
+  display: flex;
 
   .add-medicine {
     height: 50vh;
