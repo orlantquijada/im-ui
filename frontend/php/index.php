@@ -4,6 +4,16 @@ function money($value)
   if ($value < 0) return "-" . money(-$value);
   return '₱' . number_format($value, 2);
 }
+$con = mysqli_connect("localhost", "root", "", "pharmacy_db");
+
+$sql = "SELECT * FROM transaction WHERE is_payed = false";
+$check_transaction = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($check_transaction);
+if ($row == NULL) {
+  $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
+  $result = mysqli_query($con, $sql) or die;
+  $row = mysqli_fetch_array($result);
+}
 ?>
 
 <!DOCTYPE html>
@@ -103,53 +113,108 @@ function money($value)
           ?>
         </section>
     </section>
-    
+
+    <section class="right-side-bar">
+      <section class="right-side-bar__top">
+        <div class="right-side-bar__top__pharmacy">
+          <div class="right-side-bar__top__pharmacy__hero">
+            <img src="../static/hygeia.svg" class="logo" />
+            <h1 class="name">Pharmacy</h1>
+          </div>
+          <h3 class="right-side-bar__top__pharmacy__location">
+            21 St. This Barangay, That City
+          </h3>
+        </div>
+        <div class="line"></div>
+      </section>
+      <section class="right-side-bar__mid">
+        <div class="right-side-bar__mid__transaction">
+          <h1 class="name">Transaction:</h1>
+          <h1 class="number">817231987237</h1>
+        </div>
+        <div class="line"></div>
+      </section>
+
+      <section class="right-side-bar__bot">
+        <section class="table">
+          <div class="table__card">
+            <div class="table__card__item name">
+              <h1>BIOGESIC TABLET 250MG</h1>
+            </div>
+            <div class="table__card__item piece">
+              <h1>5PC</h1>
+            </div>
+            <div class="table__card__item price">
+              <h1>6.00</h1>
+            </div>
+            <div class="table__card__item total">
+              <h1>30.00</h1>
+            </div>
+          </div>
+        </section>
+
+        <section class="calculations">
+          <div class="total-items">
+            <h1 class="name">TOTAL ITEMS:</h1>
+            <h2 class="number">8</h2>
+          </div>
+          <div class="subtotal">
+            <h1 class="name">SUBTOTAL:</h1>
+            <h2 class="number">228.00</h2>
+          </div>
+        </section>
+        <div class="line--broken"></div>
+        <section class="total">
+          <h1 class="name">TOTAL:</h1>
+          <h1 class="number">200.00</h1>
+        </section>
+        <div class='pay-section'>
+          <input type='submit' value='pay'>
+        </div>
+      </section>
+    </section>
+
     <!-- Add Modal Section -->
-      <?php
-        $generic_name = "";
-        $company_name = "";
-        $brand_name = "";
-        $quantity = "";
-        $dosage = "";
-        $price = "";
+    <?php
+    $generic_name = "";
+    $company_name = "";
+    $brand_name = "";
+    $quantity = "";
+    $dosage = "";
+    $price = "";
 
-        $sql = "SELECT * FROM transaction WHERE is_payed = false";
-        $check_transaction = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($check_transaction);
-        if($row == NULL){
-          $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
-          $result = mysqli_query($con, $sql);
-          $row = mysqli_fetch_array($result);
-        }
-        $transaction_id = $row['id'];
-        $is_edit = false;
+    $is_edit = false;
 
-        if(isset($_POST['addComplete'])){
-          $medicine_id = $_POST['medicineId'];
-          $items_purchased = $_POST['itemsPurchased'];
-          $add_purchase = "INSERT INTO transaction (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
-          $insert_order = mysqli_query($con, $add_purchase);
-        }
+    if (isset($_POST['addComplete'])) {
+      $trans_id_sql = "SELECT * FROM transaction WHERE is_payed = false";
+      $get_trans_id = mysqli_query($con, $trans_id_sql);
+      $row = mysqli_fetch_array($get_trans_id);
+      $transaction_id = $row['id'];
+      $medicine_id = $_POST['medicineId'];
+      $items_purchased = $_POST['itemsPurchased'];
+      $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
+      $insert_order = mysqli_query($con, $add_purchase);
+    }
 
-        if (isset($_GET['edit'])) {
-          $is_edit = (bool)$_GET['edit'];
-        }
-       
-        if ($is_edit) {
-          $id_to_edit = $_GET['id'];
-          $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
-          $medicine_instance = mysqli_query($con, $sql_edit);
+    if (isset($_GET['edit'])) {
+      $is_edit = (bool) $_GET['edit'];
+    }
 
-          $row = mysqli_fetch_assoc($medicine_instance);
-        
-          $generic_name = $row["generic_name"];
-          $company_name = $row["company"];
-          $brand_name = $row["brand_name"];
-          $quantity = $row["quantity"];
-          $dosage = $row["dosage"];
-          $price = money($row["price"]);
-          echo
-          "
+    if ($is_edit) {
+      $id_to_edit = $_GET['id'];
+      $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
+      $medicine_instance = mysqli_query($con, $sql_edit);
+
+      $row = mysqli_fetch_assoc($medicine_instance);
+
+      $generic_name = $row["generic_name"];
+      $company_name = $row["company"];
+      $brand_name = $row["brand_name"];
+      $quantity = $row["quantity"];
+      $dosage = $row["dosage"];
+      $price = money($row["price"]);
+      echo
+        "
           <div class='modal' class='MedicineModal' id='addMedicineModal'>
         <div class='medicineModal'>
           <div class='header'>
@@ -207,9 +272,9 @@ function money($value)
         </div>
       </div>
           ";
-        }
-      ?>
-      <!-- End of Modal -->
+    }
+    ?>
+    <!-- End of Modal -->
   </div>
   <script src="../im-ui/im-ui/frontend/js/modal.js"></script>
   <script language="Javascript">
