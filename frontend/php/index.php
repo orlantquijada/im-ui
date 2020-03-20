@@ -167,87 +167,54 @@ or die('Error connecting to MySQL server.');
     </section>
   </section>
   <!-- Modal Section -->
-  <?php
-   $con = mysqli_connect('localhost','root','','pharmacy_db')
-   or die('Error connecting to MySQL server.');
-  
-    $is_edit = false;
-  
-    try {
-      @$is_edit = (bool)$_GET['edit'];
-    } catch (Exception $e) {}
-   
-    if ($is_edit) {
-      $id = $_GET['id'];
-      $sql = "SELECT * FROM medicine WHERE id= '$id'";
-      $result = mysqli_query($con, $sql);
-      $row = mysqli_fetch_array($result);
-        echo 
-          "
-          <div class='modal'>
-            <div class='add-medicine'>
-              <span class='close'>+</span>
-              <form action='#' method='post' class='table'>
-                <input type='text' name = 'id' value='{" . $row['id'] . "}' style='display:none'>
-                <div class='table__item generic'>
-                  <h1 class='name'>Generic Name:</h1>
-                  <h1 class='title'>" . $row['generic_name'] . "</h1>
-                </div>
-      
-                <div class='table__item brand'>
-                  <h1 class='name'>Brand Name:</h1>
-                  <h1 class='title'>" . $row['brand_name'] . "</h1>
-                </div>
-        
-                <div class='table__item company'>
-                  <h1 class='name'>Company Name:</h1>
-                  <h1 class='title'>" . $row['company'] . "</h1>
-                </div>
-        
-                <div class='table__item dosage'>
-                  <h1 class='name'>Dosage:</h1>
-                  <h1 class='title'>" . $row['dosage'] . "</h1>
-                </div>
-              </form>
-      
-              <form action='#' name='modal-form' method='post' class='table'>
-                <div class='table__item stocks'>
-                  <h1 class='name'>Stocks Available:</h1>
-                  <h1 class='title'>" . $row['quantity'] . "</h1>
-                </div>
-        
-                <div class='table__item quantity'>
-                  <label for='qty' class='name'>Quantity:</label>
-                  <input type='text' name='quantity' class='title' value='2' size='2'>
-                </div>
-      
-                <div class='table__item price'>
-                  <h1 class='name'>Price:</h1>
-                  <h1 class='title'>" . money($row['price']) . "</h1>
-                </div>
-                
-                <div class='buttons'>
-                  <button type='reset' class='cancel'>
-                    <h1>Cancel</h1>
-                  </button>
-                  <input type='submit' class='submit' name='confirm' value='Confirm'>
-                </div>
-              </form>
+  <div class='modal' class='MedicineModal' id='addMedicineModal'>
+        <div class='medicineModal'>
+          <div class='header'>
+            <h1 class='title'>Add Item</h1>
+          </div>
+          <form action='inventory.php' method='POST' class='form'>
+            <div class='form__main' >
+              <div class='form__main__form-item'>
+                <h1 class='title'>Generic Name :</h1>
+                <input type='text' class='input' name='genericNameAdd' />
+              </div>
+              
+              <div class='form__main__form-item'>
+                <h1 class='title'>Company Name :</h1>
+                <input type='text' class='input' name='companyNameAdd' />
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Brand Name :</h1>
+                <input type='text' class='input' name='brandNameAdd' />
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Dosage :</h1>
+                <input type='text' class='input' name='dosageAdd' />
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Price :</h1>
+                <input type='text' class='input' name='priceAdd' />
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Stocks Available :</h1>
+                <input type='text' class='input' name='quantityAdd' />
+              </div>
             </div>
-          ";
 
-          if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $quantity = $_POST['quantity'];
-          }
-          else{
-                echo '<script language="javascript">';
-                echo 'alert("123")';  //not showing an alert box.
-                echo '</script>';
-          }
-         
-  }
-
-  ?>
+            <div class='buttons'>
+              <div class='buttons__main'>
+                <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
+                <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  <!-- Modal Section -->
 
   </div>
 </div>
