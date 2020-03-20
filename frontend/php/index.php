@@ -1,13 +1,9 @@
 <?php
-
 function money($value)
 {
   if ($value < 0) return "-" . money(-$value);
   return '₱' . number_format($value, 2);
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -107,15 +103,116 @@ function money($value)
           ?>
         </section>
     </section>
+    
+    <!-- Add Modal Section -->
+      <?php
+        $generic_name = "";
+        $company_name = "";
+        $brand_name = "";
+        $quantity = "";
+        $dosage = "";
+        $price = "";
 
+        $sql = "SELECT * FROM transaction WHERE is_payed = false";
+        $check_transaction = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($check_transaction);
+        if($row == NULL){
+          $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_array($result);
+        }
+        $transaction_id = $row['id'];
+        $is_edit = false;
+
+        if(isset($_POST['addComplete'])){
+          $medicine_id = $_POST['medicineId'];
+          $items_purchased = $_POST['itemsPurchased'];
+          $add_purchase = "INSERT INTO transaction (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
+          $insert_order = mysqli_query($con, $add_purchase);
+        }
+
+        if (isset($_GET['edit'])) {
+          $is_edit = (bool)$_GET['edit'];
+        }
+       
+        if ($is_edit) {
+          $id_to_edit = $_GET['id'];
+          $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
+          $medicine_instance = mysqli_query($con, $sql_edit);
+
+          $row = mysqli_fetch_assoc($medicine_instance);
+        
+          $generic_name = $row["generic_name"];
+          $company_name = $row["company"];
+          $brand_name = $row["brand_name"];
+          $quantity = $row["quantity"];
+          $dosage = $row["dosage"];
+          $price = money($row["price"]);
+          echo
+          "
+          <div class='modal' class='MedicineModal' id='addMedicineModal'>
+        <div class='medicineModal'>
+          <div class='header'>
+            <h1 class='title'>Purchase Item</h1>
+          </div>
+          <div class='form'>
+            <div class='form__main' >
+              <div class='form__main__form-item'>
+                <h1 class='title'>Generic Name :</h1>
+                <input type='text' class='input' name='genericNameAdd' value='$generic_name'/>
+              </div>
+              
+              <div class='form__main__form-item'>
+                <h1 class='title'>Company Name :</h1>
+                <input type='text' class='input' name='companyNameAdd' value='$company_name'/>
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Brand Name :</h1>
+                <input type='text' class='input' name='brandNameAdd' value='$brand_name'/>
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Dosage :</h1>
+                <input type='text' class='input' name='dosageAdd' value='$dosage'/>
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Price :</h1>
+                <input type='text' class='input' name='priceAdd' value='$price'/>
+              </div>
+
+              <div class='form__main__form-item'>
+                <h1 class='title'>Stocks Available :</h1>
+                <input type='text' class='input' name='quantityAdd' value='$quantity'/>
+              </div>
+            </div>
+
+            <form action='index.php' method='POST'>
+              <div class='form__main__form-item'>
+                <h1 class='title'>Quantity :</h1>
+                <input type='text' class='input' name='itemsPurchased' />
+              </div>
+              
+              <div class='buttons'>
+                <div class='buttons__main'>
+                  <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
+                  <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
+                </div>
+              </div>
+
+              <input type='hidden' name='medicineId' value={$id_to_edit} />
+            </form>
+          </div>
+        </div>
+      </div>
+          ";
+        }
+      ?>
+      <!-- End of Modal -->
   </div>
+  <script src="../im-ui/im-ui/frontend/js/modal.js"></script>
   <script language="Javascript">
-    let modal = document.querySelector(".modal");
-
-    document.querySelector(".close").addEventListener("click", event => {
-      modal.style.display = "none";
-    });
-
     function unavailable() {
       alert("Item unavailable!");
     }
