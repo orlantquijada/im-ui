@@ -1,17 +1,23 @@
 // Modals
-const addMedicineModal = document.getElementById("addMedicineModal");
-const editMedicineModal = document.getElementById("editMedicineModal");
+let addMedicineModal = document.getElementById("addMedicineModal");
+let editMedicineModal = document.getElementById("editMedicineModal");
+let addMedicineModalCheckout = document.getElementById(
+  "addMedicineModalCheckout"
+);
 
 // Modal activators
 let addMedicineButton = document.getElementById("addMedicineButton");
-let editMedicineButton = document.getElementById("editMedicineButton");
 
 // Close buttons for modals
 let editMedicineModalClose = document.getElementById("editMedicineModalClose");
 let addMedicineModalClose = document.getElementById("addMedicineModalClose");
+let addMedicineModalCloseCheckout = document.getElementById(
+  "addMedicineModalCloseCheckout"
+);
 
-const modalFunctionality = (modal, button, close, hasButton = true) => {
-  if (hasButton) {
+// function to add to modals
+const modalFunctionality = (modal, close, button) => {
+  if (button) {
     button.addEventListener("click", event => {
       modal.style.display = "flex";
     });
@@ -22,10 +28,15 @@ const modalFunctionality = (modal, button, close, hasButton = true) => {
   });
 };
 
-modalFunctionality(addMedicineModal, addMedicineButton, addMedicineModalClose);
-modalFunctionality(
-  editMedicineModal,
-  editMedicineButton,
-  editMedicineModalClose,
-  false
-);
+try {
+  modalFunctionality(
+    addMedicineModal,
+    addMedicineButton,
+    addMedicineModalClose
+  );
+  modalFunctionality(editMedicineModal, editMedicineModalClose);
+} catch (error) {}
+
+try {
+  modalFunctionality(addMedicineModalCheckout, addMedicineModalCloseCheckout);
+} catch (error) {}

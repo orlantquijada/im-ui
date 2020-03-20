@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 11:34 PM
+-- Generation Time: Mar 20, 2020 at 03:07 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -30,10 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `branch_name` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `contact_number` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `username`, `password`, `branch_name`, `name`, `contact_number`) VALUES
+(1, 'amoresjan', '123123', 'Tisa', 'Jan Dale Amores', '09064346050');
 
 -- --------------------------------------------------------
 
@@ -43,13 +52,26 @@ CREATE TABLE `employee` (
 
 CREATE TABLE `medicine` (
   `id` int(11) NOT NULL,
-  `branch_name` varchar(100) NOT NULL,
-  `company` varchar(100) NOT NULL,
   `generic_name` varchar(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL,
+  `dosage` varchar(30) NOT NULL,
+  `company` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `dosage` varchar(30) NOT NULL
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `medicine`
+--
+
+INSERT INTO `medicine` (`id`, `generic_name`, `brand_name`, `dosage`, `company`, `quantity`, `price`) VALUES
+(1, 'Paracetamol', 'Biogesic', '500mg Capsule', 'Unilab', 15, 7),
+(2, 'Paracetamol', 'Biogesic', '250mg Capsule', 'Unilab', 27, 8.5),
+(3, 'Ibuprofen', 'Advil', '250mg Capsule', 'Pfizer', 1, 25),
+(4, 'Acetylcysteine', 'Fluimucil', '600mg Tablet', 'Cathay Drug', 0, 78.5),
+(5, 'Celecoxib', 'Celence-200', '200mg Capsule', 'Altomed', 4, 34.6),
+(6, 'Clindamycin', 'Clindal', '300mg Capsule', 'One Pharma', 0, 43.5),
+(7, 'Clindamycin', 'Clindal', '150mg Capsule', 'One Pharma', 0, 32);
 
 -- --------------------------------------------------------
 
@@ -72,12 +94,19 @@ CREATE TABLE `ordered_item` (
 
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
-  `branch_name` varchar(100) NOT NULL,
-  `datetime_purchased` datetime DEFAULT NULL,
+  `datetime_purchased` datetime DEFAULT current_timestamp(),
   `total` float DEFAULT NULL,
   `payment` float DEFAULT NULL,
-  `employee_id` int(11) NOT NULL
+  `employee_id` int(11) NOT NULL,
+  `is_payed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `datetime_purchased`, `total`, `payment`, `employee_id`, `is_payed`) VALUES
+(12, '2020-03-20 22:00:20', NULL, NULL, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -87,7 +116,8 @@ CREATE TABLE `transaction` (
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `medicine`
@@ -118,25 +148,25 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ordered_item`
 --
 ALTER TABLE `ordered_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -159,4 +189,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
--- asdf

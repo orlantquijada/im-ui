@@ -130,27 +130,47 @@ if ($row == NULL) {
       <section class="right-side-bar__mid">
         <div class="right-side-bar__mid__transaction">
           <h1 class="name">Transaction:</h1>
-          <h1 class="number">817231987237</h1>
+          <?php
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_array($result);
+          echo "<h1 class='number'>".$row['id']."</h1>";
+          ?>
+          
         </div>
         <div class="line"></div>
       </section>
-
       <section class="right-side-bar__bot">
         <section class="table">
-          <div class="table__card">
-            <div class="table__card__item name">
-              <h1>BIOGESIC TABLET 250MG</h1>
-            </div>
-            <div class="table__card__item piece">
-              <h1>5PC</h1>
-            </div>
-            <div class="table__card__item price">
-              <h1>6.00</h1>
-            </div>
-            <div class="table__card__item total">
-              <h1>30.00</h1>
-            </div>
-          </div>
+        <?php
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $check_transaction = mysqli_query($con, $sql);
+          $row = mysqli_fetch_assoc($check_transaction);
+          $transaction_id = $row['id'];
+
+          $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O, transaction as T where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
+
+          $result = mysqli_query($con, $sql);
+          while($row = mysqli_fetch_array($result)){
+            echo 
+            "
+            <div class='table__card'>
+                <div class='table__card__item name'>
+                  <h1>".$row['brand_name']." ".$row['dosage']."</h1>
+                </div>
+                <div class='table__card__item piece'>
+                  <h1>".$row['quantity']."PC</h1>
+                </div>
+                <div class='table__card__item price'>
+                  <h1>".money($row['price'])."</h1>
+                </div>
+                <div class='table__card__item total'>
+                  <h1>30.00</h1>
+                </div>
+              </div>
+            ";
+          }
+          ?>
         </section>
 
         <section class="calculations">
@@ -168,54 +188,53 @@ if ($row == NULL) {
           <h1 class="name">TOTAL:</h1>
           <h1 class="number">200.00</h1>
         </section>
-        <div class='pay-section'>
-          <input type='submit' value='pay'>
-        </div>
       </section>
     </section>
 
     <!-- Add Modal Section -->
-    <?php
-    $generic_name = "";
-    $company_name = "";
-    $brand_name = "";
-    $quantity = "";
-    $dosage = "";
-    $price = "";
+     
+      <?php
+        $generic_name = "";
+        $company_name = "";
+        $brand_name = "";
+        $quantity = "";
+        $dosage = "";
+        $price = "";
 
-    $is_edit = false;
+        $sql = "SELECT id FROM transaction WHERE is_payed = false";
+        $check_transaction = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($check_transaction);
+        $transaction_id = $row['id'];
+        $is_edit = false;
 
-    if (isset($_POST['addComplete'])) {
-      $trans_id_sql = "SELECT * FROM transaction WHERE is_payed = false";
-      $get_trans_id = mysqli_query($con, $trans_id_sql);
-      $row = mysqli_fetch_array($get_trans_id);
-      $transaction_id = $row['id'];
-      $medicine_id = $_POST['medicineId'];
-      $items_purchased = $_POST['itemsPurchased'];
-      $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
-      $insert_order = mysqli_query($con, $add_purchase);
-    }
+        if(isset($_POST['addComplete'])){
+          $medicine_id = $_POST['medicineId'];
+          $items_purchased = $_POST['itemsPurchased'];
+          $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
+          $insert_order = mysqli_query($con, $add_purchase);
+        }
 
-    if (isset($_GET['edit'])) {
-      $is_edit = (bool) $_GET['edit'];
-    }
+        if (isset($_GET['edit'])) {
+          $is_edit = (bool)$_GET['edit'];
+        }
 
-    if ($is_edit) {
-      $id_to_edit = $_GET['id'];
-      $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
-      $medicine_instance = mysqli_query($con, $sql_edit);
+       
+        if ($is_edit) {
+          $id_to_edit = $_GET['id'];
+          $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
+          $medicine_instance = mysqli_query($con, $sql_edit);
 
-      $row = mysqli_fetch_assoc($medicine_instance);
-
-      $generic_name = $row["generic_name"];
-      $company_name = $row["company"];
-      $brand_name = $row["brand_name"];
-      $quantity = $row["quantity"];
-      $dosage = $row["dosage"];
-      $price = money($row["price"]);
-      echo
-        "
-          <div class='modal' class='MedicineModal' id='addMedicineModal'>
+          $row = mysqli_fetch_assoc($medicine_instance);
+        
+          $generic_name = $row["generic_name"];
+          $company_name = $row["company"];
+          $brand_name = $row["brand_name"];
+          $quantity = $row["quantity"];
+          $dosage = $row["dosage"];
+          $price = money($row["price"]);
+          echo
+          "
+          <div class='modal modal--show' class='MedicineModal' id='addMedicineModalCheckout'>
         <div class='medicineModal'>
           <div class='header'>
             <h1 class='title'>Purchase Item</h1>
@@ -224,32 +243,32 @@ if ($row == NULL) {
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' value='$generic_name'/>
+                <input type='text' class='input' name='genericNameAdd' value='{$generic_name}'/>
               </div>
               
               <div class='form__main__form-item'>
                 <h1 class='title'>Company Name :</h1>
-                <input type='text' class='input' name='companyNameAdd' value='$company_name'/>
+                <input type='text' class='input' name='companyNameAdd' value='{$company_name}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Brand Name :</h1>
-                <input type='text' class='input' name='brandNameAdd' value='$brand_name'/>
+                <input type='text' class='input' name='brandNameAdd' value='{$brand_name}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Dosage :</h1>
-                <input type='text' class='input' name='dosageAdd' value='$dosage'/>
+                <input type='text' class='input' name='dosageAdd' value='{$dosage}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Price :</h1>
-                <input type='text' class='input' name='priceAdd' value='$price'/>
+                <input type='text' class='input' name='priceAdd' value='{$price}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Stocks Available :</h1>
-                <input type='text' class='input' name='quantityAdd' value='$quantity'/>
+                <input type='text' class='input' name='quantityAdd' value='{$quantity}'/>
               </div>
             </div>
 
@@ -261,7 +280,7 @@ if ($row == NULL) {
               
               <div class='buttons'>
                 <div class='buttons__main'>
-                  <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
+                  <button type='reset' class='cancel btn' id='addMedicineModalCloseCheckout'><h1>Cancel</h1></button>
                   <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
                 </div>
               </div>
@@ -276,7 +295,7 @@ if ($row == NULL) {
     ?>
     <!-- End of Modal -->
   </div>
-  <script src="../im-ui/im-ui/frontend/js/modal.js"></script>
+  <script src="../js/modal.js"></script>
   <script language="Javascript">
     function unavailable() {
       alert("Item unavailable!");
