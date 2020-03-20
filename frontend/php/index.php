@@ -6,8 +6,7 @@ function money($value)
   return '₱' . number_format($value, 2);
 }
 
-$con = mysqli_connect('localhost','root','','pharmacy_db')
-or die('Error connecting to MySQL server.');
+
 
 ?>
 
@@ -71,18 +70,18 @@ or die('Error connecting to MySQL server.');
           $print = "";
           while ($row = mysqli_fetch_array($result)) {
             if ($row['quantity'] <= 0) {
-              $print .=
+              echo
                 "
               <div class='table__body__card--unavailable' onclick = 'return unavailable()'>
                 ";
             } else {
-              $print .=
+              echo
                 "
                 <a href='index.php?edit=1&id=" . $row['id'] . "'>
                 <div class='table__body__card' onclick>
                 ";
             }
-            $print .=
+            echo
               "
                 <div class='table__body__card__item generic'>
                   <h1 class='name'>" . $row['generic_name'] . "</h1>
@@ -101,124 +100,15 @@ or die('Error connecting to MySQL server.');
                 </div>
               </div>
               ";
-            if($row['quantity'] != 0){
-              $print .= "</a>";
+            if ($row['quantity'] != 0) {
+              echo "</a>";
             }
           }
-          echo $print;
           ?>
         </section>
     </section>
-    <section class="right-side-bar">
-      <section class="right-side-bar__top">
-        <div class="right-side-bar__top__pharmacy">
-          <div class="right-side-bar__top__pharmacy__hero">
-            <img src="../static/hygeia.svg" class="logo" />
-            <h1 class="name">Pharmacy</h1>
-          </div>
-          <h3 class="right-side-bar__top__pharmacy__location">
-            21 St. This Barangay, That City
-          </h3>
-        </div>
-        <div class="line"></div>
-      </section>
-      <section class="right-side-bar__mid">
-        <div class="right-side-bar__mid__transaction">
-          <h1 class="name">Transaction:</h1>
-          <h1 class="number">817231987237</h1>
-        </div>
-        <div class="line"></div>
-      </section>
-
-      <section class="right-side-bar__bot">
-        <section class="table">
-          <div class="table__card">
-            <div class="table__card__item name">
-              <h1>BIOGESIC TABLET 250MG</h1>
-            </div>
-            <div class="table__card__item piece">
-              <h1>5PC</h1>
-            </div>
-            <div class="table__card__item price">
-              <h1>6.00</h1>
-            </div>
-            <div class="table__card__item total">
-              <h1>30.00</h1>
-            </div>
-          </div>
-        </section>
-
-        <section class="calculations">
-          <div class="total-items">
-            <h1 class="name">TOTAL ITEMS:</h1>
-            <h2 class="number">8</h2>
-          </div>
-          <div class="subtotal">
-            <h1 class="name">SUBTOTAL:</h1>
-            <h2 class="number">228.00</h2>
-          </div>
-        </section>
-        <div class="line--broken"></div>
-        <section class="total">
-          <h1 class="name">TOTAL:</h1>
-          <h1 class="number">200.00</h1>
-        </section>
-      </section>
-    </section>
-  </section>
-  <!-- Modal Section -->
-  <div class='modal' class='MedicineModal' id='addMedicineModal'>
-        <div class='medicineModal'>
-          <div class='header'>
-            <h1 class='title'>Add Item</h1>
-          </div>
-          <form action='inventory.php' method='POST' class='form'>
-            <div class='form__main' >
-              <div class='form__main__form-item'>
-                <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' />
-              </div>
-              
-              <div class='form__main__form-item'>
-                <h1 class='title'>Company Name :</h1>
-                <input type='text' class='input' name='companyNameAdd' />
-              </div>
-
-              <div class='form__main__form-item'>
-                <h1 class='title'>Brand Name :</h1>
-                <input type='text' class='input' name='brandNameAdd' />
-              </div>
-
-              <div class='form__main__form-item'>
-                <h1 class='title'>Dosage :</h1>
-                <input type='text' class='input' name='dosageAdd' />
-              </div>
-
-              <div class='form__main__form-item'>
-                <h1 class='title'>Price :</h1>
-                <input type='text' class='input' name='priceAdd' />
-              </div>
-
-              <div class='form__main__form-item'>
-                <h1 class='title'>Stocks Available :</h1>
-                <input type='text' class='input' name='quantityAdd' />
-              </div>
-            </div>
-
-            <div class='buttons'>
-              <div class='buttons__main'>
-                <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
-                <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-  <!-- Modal Section -->
 
   </div>
-</div>
-
   <script language="Javascript">
     let modal = document.querySelector(".modal");
 
