@@ -127,13 +127,15 @@ function money($value)
         if(isset($_POST['addComplete'])){
           $medicine_id = $_POST['medicineId'];
           $items_purchased = $_POST['itemsPurchased'];
-          $add_purchase = "INSERT INTO transaction (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
+          $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
           $insert_order = mysqli_query($con, $add_purchase);
         }
 
         if (isset($_GET['edit'])) {
           $is_edit = (bool)$_GET['edit'];
         }
+
+        echo $is_edit;
        
         if ($is_edit) {
           $id_to_edit = $_GET['id'];
@@ -150,7 +152,7 @@ function money($value)
           $price = money($row["price"]);
           echo
           "
-          <div class='modal' class='MedicineModal' id='addMedicineModal'>
+          <div class='modal modal--show' class='MedicineModal' id='addMedicineModalCheckout'>
         <div class='medicineModal'>
           <div class='header'>
             <h1 class='title'>Purchase Item</h1>
@@ -159,32 +161,32 @@ function money($value)
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' value='$generic_name'/>
+                <input type='text' class='input' name='genericNameAdd' value='{$generic_name}'/>
               </div>
               
               <div class='form__main__form-item'>
                 <h1 class='title'>Company Name :</h1>
-                <input type='text' class='input' name='companyNameAdd' value='$company_name'/>
+                <input type='text' class='input' name='companyNameAdd' value='{$company_name}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Brand Name :</h1>
-                <input type='text' class='input' name='brandNameAdd' value='$brand_name'/>
+                <input type='text' class='input' name='brandNameAdd' value='{$brand_name}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Dosage :</h1>
-                <input type='text' class='input' name='dosageAdd' value='$dosage'/>
+                <input type='text' class='input' name='dosageAdd' value='{$dosage}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Price :</h1>
-                <input type='text' class='input' name='priceAdd' value='$price'/>
+                <input type='text' class='input' name='priceAdd' value='{$price}'/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Stocks Available :</h1>
-                <input type='text' class='input' name='quantityAdd' value='$quantity'/>
+                <input type='text' class='input' name='quantityAdd' value='{$quantity}'/>
               </div>
             </div>
 
@@ -196,7 +198,7 @@ function money($value)
               
               <div class='buttons'>
                 <div class='buttons__main'>
-                  <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
+                  <button type='reset' class='cancel btn' id='addMedicineModalCloseCheckout'><h1>Cancel</h1></button>
                   <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
                 </div>
               </div>
@@ -211,7 +213,7 @@ function money($value)
       ?>
       <!-- End of Modal -->
   </div>
-  <script src="../im-ui/im-ui/frontend/js/modal.js"></script>
+  <script src="../js/modal.js"></script>
   <script language="Javascript">
     function unavailable() {
       alert("Item unavailable!");
