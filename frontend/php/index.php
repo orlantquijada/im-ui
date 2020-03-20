@@ -175,16 +175,14 @@ function money($value)
     if ($is_edit) {
       $id = $_GET['id'];
       $sql = "SELECT * FROM medicine WHERE id= '$id'";
-      echo $id;
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_array($result);
-
         echo 
           "
           <div class='modal'>
             <div class='add-medicine'>
               <span class='close'>+</span>
-              <form action='#' method='get' class='table'>
+              <form action='#' method='post' class='table'>
                 <input type='text' name = 'id' value='{" . $row['id'] . "}' style='display:none'>
                 <div class='table__item generic'>
                   <h1 class='name'>Generic Name:</h1>
@@ -207,7 +205,7 @@ function money($value)
                 </div>
               </form>
       
-              <form action='#' name='modal-form' method='GET' class='table'>
+              <form action='#' name='modal-form' method='post' class='table'>
                 <div class='table__item stocks'>
                   <h1 class='name'>Stocks Available:</h1>
                   <h1 class='title'>" . $row['quantity'] . "</h1>
@@ -215,7 +213,7 @@ function money($value)
         
                 <div class='table__item quantity'>
                   <label for='qty' class='name'>Quantity:</label>
-                  <input type='text' name='quantity' id='qty' class='title' value='2'  size='2' />
+                  <input type='text' name='quantity' class='title' value='2' size='2'>
                 </div>
       
                 <div class='table__item price'>
@@ -227,32 +225,21 @@ function money($value)
                   <button type='reset' class='cancel'>
                     <h1>Cancel</h1>
                   </button>
-                  <div class='submit'>
-                      <input type='submit' class='submit' name='confirm-button' value='Confirm'>
-                  </div>
+                  <input type='submit' class='submit' name='confirm' value='Confirm'>
                 </div>
               </form>
             </div>
           ";
-    
-    if(isset($_GET['confirm-button'])){
-      $quantity = $_GET['quantity'];
-      $sql = "SELECT * FROM transaction WHERE is_payed = 'false'";
-      $result = mysqli_query($con, $sql);
-      $row = mysqli_fetch_array($result);
-      if($row == NULL){ //create new transaction
-        $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result);
-        $transaction_id = $row['id'];
-      }
-      else{ //select older transaction
-        $transaction_id = $row['id'];
-        $sql = "INSERT INTO ordered_item (medicine_id, transaction_id, quantity) VALUES ('$id','$transaction_id','$quantity')";
-        $result = mysqli_query($con, $sql) or die ("123");
-        echo("145");
-      }
-    }
+
+          if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $quantity = $_POST['quantity'];
+          }
+          else{
+                echo '<script language="javascript">';
+                echo 'alert("123")';  //not showing an alert box.
+                echo '</script>';
+          }
+         
   }
 
   ?>
