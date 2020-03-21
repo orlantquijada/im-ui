@@ -975,7 +975,6 @@ ul {
 }
 
 .right-side-bar__bot .pay-transaction .input-payment {
-  margin: auto;
   width: 200px;
   height: 50px;
   font-size: large;
@@ -983,8 +982,8 @@ ul {
 }
 
 .right-side-bar .pay-total {
-  right: 1em;
-  bottom: 1em;
+  right: 3em;
+  bottom: 2em;
   position: absolute;
   height: 60px;
   width: 120px;
@@ -992,6 +991,7 @@ ul {
   background-color: yellowgreen;
   border-radius: 10px;
   color: #f0edfe;
+  cursor: pointer;
 }
 
 .line {
