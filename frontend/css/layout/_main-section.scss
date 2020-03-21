@@ -24,6 +24,7 @@
     &__main {
       flex-grow: 1;
       @include flexbox($justify: flex-start);
+      
 
       .btn {
         border: none;
@@ -49,6 +50,7 @@
       &__name {
         width: 80%;
 
+        outline: none;
         border: none;
 
         font-style: normal;

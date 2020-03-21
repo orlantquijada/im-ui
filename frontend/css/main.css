@@ -245,6 +245,7 @@ ul {
 
 .main .search__main__name {
   width: 80%;
+  outline: none;
   border: none;
   font-style: normal;
   font-weight: normal;
