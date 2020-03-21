@@ -25,8 +25,6 @@
     $dosage = $_POST['dosage'];
     $price = $_POST['price'];
 
-    echo $price;
-
     $edit_query = "UPDATE `medicine` SET `company`='{$company_name}',`generic_name`='{$generic_name}',`brand_name`='{$brand_name}',
                                          `quantity`={$quantity},`dosage`='{$dosage}',`price`={$price} WHERE `id`={$_POST['id']}";
     mysqli_query($con, $edit_query);
@@ -174,7 +172,7 @@
         </form>
 
         <div class="table">
-          <section class="table__header">
+          <section class="table__header inventory">
             <div class="table__header__item generic">
               <h1 class="name">Generic Name</h1>
             </div>
@@ -226,7 +224,7 @@
                     <h1 class='name'>{$row['dosage']}</h1>
                   </div>
                   <div class='table__body__card__item price'>
-                    <h1 class='name'>{$price}</h1>
+                    <h1 class='name'>₱{$price}</h1>
                   </div>
                   <div class='table__body__card__item quantity'>
                     <h1 class='name'>{$row['quantity']}</h1>

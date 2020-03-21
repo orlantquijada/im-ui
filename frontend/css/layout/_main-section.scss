@@ -93,6 +93,13 @@
       grid-template-columns: $checkout-grid-template-fractions;
       grid-template-areas: "generic brand company dosage price";
 
+      padding-right: 1em;
+
+      &.inventory {
+        grid-template-columns: $grid-table-fractions;
+        grid-template-areas: "generic brand company dosage price menu";
+      }
+
       width: 95%;
       margin: 0 auto 1em auto;
 
