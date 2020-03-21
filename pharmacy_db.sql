@@ -57,23 +57,9 @@ CREATE TABLE `medicine` (
   `generic_name` varchar(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL,
   `dosage` varchar(30) NOT NULL,
-  `company` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `medicine`
---
-
-INSERT INTO `medicine` (`id`, `generic_name`, `brand_name`, `dosage`, `company`, `quantity`, `price`) VALUES
-(1, 'Paracetamol', 'Biogesic', '500mg Capsule', 'Unilab', 15, 7),
-(2, 'Paracetamol', 'Biogesic', '250mg Capsule', 'Unilab', 27, 8.5),
-(3, 'Ibuprofen', 'Advil', '250mg Capsule', 'Pfizer', 1, 25),
-(4, 'Acetylcysteine', 'Fluimucil', '600mg Tablet', 'Cathay Drug', 0, 78.5),
-(5, 'Celecoxib', 'Celence-200', '200mg Capsule', 'Altomed', 4, 34.6),
-(6, 'Clindamycin', 'Clindal', '300mg Capsule', 'One Pharma', 0, 43.5),
-(7, 'Clindamycin', 'Clindal', '150mg Capsule', 'One Pharma', 0, 32);
 
 -- --------------------------------------------------------
 
@@ -102,13 +88,6 @@ CREATE TABLE `transaction` (
   `employee_id` int(11) NOT NULL,
   `is_payed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`id`, `datetime_purchased`, `total`, `payment`, `employee_id`, `is_payed`) VALUES
-(12, '2020-03-20 22:00:20', NULL, NULL, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -156,19 +135,19 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `ordered_item`
 --
 ALTER TABLE `ordered_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

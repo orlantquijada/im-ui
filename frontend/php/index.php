@@ -335,32 +335,32 @@ if ($row == NULL) {
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' value='{$transaction_id}' readonly/>
+                <input type='text' class='input' value='{$transaction_id}' readonly/>
               </div>
               
               <div class='form__main__form-item'>
                 <h1 class='title'>Company Name :</h1>
-                <input type='text' class='input' name='companyNameAdd' value='{$company_name}' readonly/>
+                <input type='text' class='input' value='{$company_name}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Brand Name :</h1>
-                <input type='text' class='input' name='brandNameAdd' value='{$brand_name}' readonly/>
+                <input type='text' class='input' value='{$brand_name}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Dosage :</h1>
-                <input type='text' class='input' name='dosageAdd' value='{$dosage}' readonly/>
+                <input type='text' class='input' value='{$dosage}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Price :</h1>
-                <input type='text' class='input' name='priceAdd' value='{$price}' readonly/>
+                <input type='text' class='input' value='{$price}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Stocks Available :</h1>
-                <input type='text' class='input' name='quantityAdd' value='{$quantity}' readonly/>
+                <input type='text' class='input' value='{$quantity}' readonly/>
               </div>
             </div>
 

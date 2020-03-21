@@ -250,7 +250,7 @@
 
       <!-- Add Modal Section -->
       <?php
-        if (isset($_POST['addComplete'])) {
+        if (isset($_POST['addCompleteInventory'])) {
           $add_generic_name = $_POST['genericNameAdd'];
           $add_company_name = $_POST['companyNameAdd'];
           $add_brand_name = $_POST['brandNameAdd'];
@@ -272,7 +272,7 @@
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' />
+                <input type='text' class='input' name='genericNameAdd' autofocus/>
               </div>
               
               <div class='form__main__form-item'>
@@ -304,7 +304,7 @@
             <div class='buttons'>
               <div class='buttons__main'>
                 <button type='reset' class='cancel btn' id='addMedicineModalClose'><h1>Cancel</h1></button>
-                <button type='submit' class='submit btn' name='addComplete' value=1><h1>Confirm</h1></button>
+                <button type='submit' class='submit btn' name='addCompleteInventory' value=1><h1>Confirm</h1></button>
               </div>
             </div>
           </form>
