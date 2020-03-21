@@ -147,11 +147,13 @@ if ($row == NULL) {
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
           $transaction_id = $row['id'];
+          $total_price = 0;
 
           $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O, transaction as T where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
 
           $result = mysqli_query($con, $sql);
           while($row = mysqli_fetch_array($result)){
+            $price = $row['price'] * $row['quantity'];
             echo 
             "
             <div class='table__card'>
@@ -165,10 +167,11 @@ if ($row == NULL) {
                   <h1>".money($row['price'])."</h1>
                 </div>
                 <div class='table__card__item total'>
-                  <h1>30.00</h1>
+                  <h1>".money($price)."</h1>
                 </div>
               </div>
             ";
+
           }
           ?>
         </section>
@@ -176,17 +179,20 @@ if ($row == NULL) {
         <section class="calculations">
           <div class="total-items">
             <h1 class="name">TOTAL ITEMS:</h1>
-            <h2 class="number">8</h2>
-          </div>
-          <div class="subtotal">
-            <h1 class="name">SUBTOTAL:</h1>
-            <h2 class="number">228.00</h2>
+            <?php
+            $sql = "SELECT COUNT(*) FROM ordered_item WHERE ordered_item.transaction_id = '$transaction_id'";
+            $result = mysqli_query($con,$sql);
+            $row = mysqli_fetch_array($result);
+
+            echo "<h2 class='number'>".$row[0]."</h2>";
+            ?>
+            
+            
           </div>
         </section>
         <div class="line--broken"></div>
         <section class="total">
           <h1 class="name">TOTAL:</h1>
-          <h1 class="number">200.00</h1>
         </section>
       </section>
     </section>
@@ -210,8 +216,21 @@ if ($row == NULL) {
         if(isset($_POST['addComplete'])){
           $medicine_id = $_POST['medicineId'];
           $items_purchased = $_POST['itemsPurchased'];
+          $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_array($result);
+          if($row['quantity'] < $items_purchased){
+            echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
+          }
+          else{
           $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
           $insert_order = mysqli_query($con, $add_purchase);
+
+          $diff = $row['quantity'] - $items_purchased;
+          $update_quantity = "UPDATE medicine SET quantity = '$diff' WHERE id = '$medicine_id'";
+          $update_query = mysqli_query($con, $update_quantity);
+          echo "<meta http-equiv='refresh' content='0'>";
+          }
         }
 
         if (isset($_GET['edit'])) {
@@ -291,6 +310,7 @@ if ($row == NULL) {
         </div>
       </div>
           ";
+
     }
     ?>
     <!-- End of Modal -->
