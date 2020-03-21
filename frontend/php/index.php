@@ -12,12 +12,9 @@ $row = mysqli_fetch_array($check_transaction);
 if ($row == NULL) {
   $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
   $result = mysqli_query($con, $sql);
-  $sql = "SELECT * FROM transaction WHERE is_payed = false";
+  $sql = "SELECT * FROM transaction WHERE is_payed = false LIMIT 1";
   header("index.php");
-  
 }
-$check_transaction = mysqli_query($con, $sql);
-  $row = mysqli_fetch_array($check_transaction);
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +131,7 @@ $check_transaction = mysqli_query($con, $sql);
         <div class="right-side-bar__mid__transaction">
           <h1 class="name">Transaction Number :</h1>
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
           $result = mysqli_query($con, $sql);
           $row = mysqli_fetch_array($result);
           echo "<h1 class='number'>" . str_pad($row['id'], 10, '0', STR_PAD_LEFT) . "</h1>";
@@ -146,13 +143,13 @@ $check_transaction = mysqli_query($con, $sql);
       <section class="right-side-bar__bot">
         <section class="table">
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
           $transaction_id = $row['id'];
           $total_price = 0;
 
-          $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O, transaction as T where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
+          $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
 
           $result = mysqli_query($con, $sql);
           while ($row = mysqli_fetch_array($result)) {
@@ -200,10 +197,9 @@ $check_transaction = mysqli_query($con, $sql);
         <section class="total">
           <h1 class="name">TOTAL:</h1>
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
-          $transaction_id = $row['id'];
 
           $sql = "SELECT total FROM transaction WHERE id = '$transaction_id'";
           $result = mysqli_query($con, $sql);
@@ -215,7 +211,7 @@ $check_transaction = mysqli_query($con, $sql);
           <div class="pay-transaction">
             <h1 class="title">Enter payment:</h1>
             <input type='text' class='input-payment' name='payment'tabIndex=2 />
-          </div>
+          </div>  
           <button type='submit' class="pay-total" name='payTransaction'>
             <h1>Pay</h1>
           </button>
@@ -246,8 +242,18 @@ $check_transaction = mysqli_query($con, $sql);
                 $update_payed = "UPDATE transaction SET is_payed = true WHERE is_payed = false";
                 $result = mysqli_query($con, $update_payed);
 
-                echo "<meta http-equiv='refresh' content='0'>";
-
+                $sql = "SELECT * FROM transaction WHERE is_payed = false";
+                $check_transaction = mysqli_query($con, $sql);
+                $row = mysqli_fetch_array($check_transaction);
+                $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
+                $result = mysqli_query($con, $sql);
+                echo
+                "
+                <section class='total'>
+                  <h1 class='name'>CHANGE : </h1>
+                  <h1 class='number' style='padding-top: 10px;'>".money($change)."</h1>
+                </section>
+                ";
               }
             }
           }
@@ -260,7 +266,7 @@ $check_transaction = mysqli_query($con, $sql);
     <!-- Add Modal Section -->
 
     <?php
-    $sql = "SELECT id FROM transaction WHERE is_payed = false";
+    $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
     $check_transaction = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($check_transaction);
     $is_edit = false;
