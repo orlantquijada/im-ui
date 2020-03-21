@@ -103,6 +103,19 @@
     </div>
     ";
   }
+
+  if (isset($_POST['addCompleteInventory'])) {
+    $add_generic_name = $_POST['genericNameAdd'];
+    $add_company_name = $_POST['companyNameAdd'];
+    $add_brand_name = $_POST['brandNameAdd'];
+    $add_dosage = $_POST['dosageAdd'];
+    $add_price = $_POST['priceAdd'];
+    $add_qty = $_POST['quantityAdd'];
+
+    $insert_medicine_sql = "INSERT INTO `medicine`(`generic_name`, `company`, `brand_name`, `dosage`, `price`, `quantity`) VALUES 
+                           ('{$add_generic_name}','{$add_company_name}', '{$add_brand_name}','{$add_dosage}', {$add_price}, {$add_qty})";
+    $insert_medicine = mysqli_query($con, $insert_medicine_sql);
+  }
 ?>
 
 <html lang="en">
@@ -247,20 +260,6 @@
       </div>
 
       <!-- Add Modal Section -->
-      <?php
-        if (isset($_POST['addCompleteInventory'])) {
-          $add_generic_name = $_POST['genericNameAdd'];
-          $add_company_name = $_POST['companyNameAdd'];
-          $add_brand_name = $_POST['brandNameAdd'];
-          $add_dosage = $_POST['dosageAdd'];
-          $add_price = $_POST['priceAdd'];
-          $add_qty = $_POST['quantityAdd'];
-
-          $insert_medicine_sql = "INSERT INTO `medicine`(`generic_name`, `company`, `brand_name`, `dosage`, `price`, `quantity`) VALUES 
-                                 ('{$add_generic_name}','{$add_company_name}', '{$add_brand_name}','{$add_dosage}', {$add_price}, {$add_qty})";
-          $insert_medicine = mysqli_query($con, $insert_medicine_sql);
-        }
-      ?>
       <div class='modal' class='MedicineModal' id='addMedicineModal'>
         <div class='medicineModal'>
           <div class='header'>

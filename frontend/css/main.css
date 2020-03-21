@@ -543,7 +543,7 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: .5em;
+  margin-top: 0.5em;
   height: 10%;
   width: 100%;
   -webkit-box-flex: 0.3;
@@ -991,6 +991,7 @@ ul {
   border: none;
   background-color: yellowgreen;
   border-radius: 10px;
+  color: #f0edfe;
 }
 
 .line {
@@ -1225,7 +1226,7 @@ ul {
 }
 
 .modal .add-medicine .cash-out .buttons button.submit {
-  background-color: #98d838;
+  background-color: yellowgreen;
   color: #f0edfe;
 }
 
@@ -1387,7 +1388,7 @@ ul {
 }
 
 .medicineModal .form .buttons .btn.submit {
-  background-color: #98d838;
+  background-color: yellowgreen;
   color: #f0edfe;
 }
 
