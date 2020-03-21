@@ -12,8 +12,6 @@ $row = mysqli_fetch_array($check_transaction);
 if ($row == NULL) {
   $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
   $result = mysqli_query($con, $sql);
-  $sql = "SELECT * FROM transaction WHERE is_payed = false LIMIT 1";
-  header("index.php");
 }
 ?>
 
@@ -131,7 +129,7 @@ if ($row == NULL) {
         <div class="right-side-bar__mid__transaction">
           <h1 class="name">Transaction Number :</h1>
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $result = mysqli_query($con, $sql);
           $row = mysqli_fetch_array($result);
           echo "<h1 class='number'>" . str_pad($row['id'], 10, '0', STR_PAD_LEFT) . "</h1>";
@@ -143,11 +141,11 @@ if ($row == NULL) {
       <section class="right-side-bar__bot">
         <section class="table">
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
-          $transaction_id = $row['id'];
           $total_price = 0;
+          $transaction_id = $row['id'];
 
           $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
 
@@ -197,7 +195,7 @@ if ($row == NULL) {
         <section class="total">
           <h1 class="name">TOTAL:</h1>
           <?php
-          $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
 
@@ -245,8 +243,6 @@ if ($row == NULL) {
                 $sql = "SELECT * FROM transaction WHERE is_payed = false";
                 $check_transaction = mysqli_query($con, $sql);
                 $row = mysqli_fetch_array($check_transaction);
-                $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
-                $result = mysqli_query($con, $sql);
                 echo
                 "
                 <section class='total'>
@@ -266,7 +262,7 @@ if ($row == NULL) {
     <!-- Add Modal Section -->
 
     <?php
-    $sql = "SELECT id FROM transaction WHERE is_payed = false LIMIT 1";
+    $sql = "SELECT id FROM transaction WHERE is_payed = false";
     $check_transaction = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($check_transaction);
     $is_edit = false;
@@ -284,7 +280,7 @@ if ($row == NULL) {
       if ($row['quantity'] < $items_purchased) {  //if quantity exceeds, alert box
         echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
       } else {
-        $check_duplicate = "SELECT * FROM ordered_item WHERE medicine_id = '$medicine_id'";  //checking for duplicate
+        $check_duplicate = "SELECT * FROM ordered_item WHERE medicine_id = '$medicine_id' AND transaction_id = '$transaction_id'";  //checking for duplicate
         $result = mysqli_query($con, $check_duplicate);
         $row = mysqli_fetch_array($result);
 
@@ -317,7 +313,7 @@ if ($row == NULL) {
 
     if ($is_edit) {
       $id_to_edit = $_GET['id'];
-      $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
+      $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit}";
       $medicine_instance = mysqli_query($con, $sql_edit);
 
       $row = mysqli_fetch_assoc($medicine_instance);
