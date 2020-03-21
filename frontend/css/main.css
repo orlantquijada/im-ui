@@ -921,6 +921,16 @@ ul {
   color: #666666;
 }
 
+.right-side-bar .pay-total {
+  margin-right: 20px;
+  position: fixed;
+  height: 60px;
+  width: 120px;
+  border: none;
+  background-color: yellowgreen;
+  border-radius: 10px;
+}
+
 .line {
   width: 90%;
   border-top: 2px solid black;

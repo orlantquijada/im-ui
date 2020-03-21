@@ -231,11 +231,9 @@ if ($row == NULL) {
           ?>
         </section>
 
-        <a href='index.php?pay=1'>
-          <button class="pay-total">
-            <h1>Pay</h1>
-          </button>
-        </a>
+        <button class="pay-total">
+          <h1>Pay</h1>
+        </button>
 
       </section>
     </section>
@@ -260,7 +258,7 @@ if ($row == NULL) {
       $medicine_id = $_POST['medicineId'];  //get medicine_id
       $items_purchased = $_POST['itemsPurchased'];  //get items purchased
       $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
-      $result = mysqli_query($con, $sql); 
+      $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_array($result);
       if ($row['quantity'] < $items_purchased) {  //if quantity exceeds, alert box
         echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
@@ -276,8 +274,7 @@ if ($row == NULL) {
           $new_quantity = $row['quantity'] + $items_purchased; //set new quantity
           $update_purchase = "UPDATE ordered_item SET quantity = '$new_quantity' WHERE transaction_id = '$transaction_id'";
           $result = mysqli_query($con, $update_purchase);
-        }
-        else{
+        } else {
           $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";  //add new ordered item
           $insert_order = mysqli_query($con, $add_purchase);
         }
@@ -373,12 +370,13 @@ if ($row == NULL) {
     ?>
     <!-- End of Modal -->
   </div>
-  <script src="../js/modal.js"></script>
-  <script language="Javascript">
-    function unavailable() {
-      alert("Item unavailable!");
-    }
-  </script>
+  <div class='pat' <script src="../js/modal.js">
+    </script>
+    <script language="Javascript">
+      function unavailable() {
+        alert("Item unavailable!");
+      }
+    </script>
 </body>
 
 </html>
