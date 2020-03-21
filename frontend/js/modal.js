@@ -7,6 +7,7 @@ let addMedicineModalCheckout = document.getElementById(
 
 // Modal activators
 let addMedicineButton = document.getElementById("addMedicineButton");
+console.log(addMedicineButton);
 
 // Close buttons for modals
 let editMedicineModalClose = document.getElementById("editMedicineModalClose");
@@ -18,6 +19,7 @@ let addMedicineModalCloseCheckout = document.getElementById(
 // function to add to modals
 const modalFunctionality = (modal, close, button) => {
   if (button) {
+    console.log(button);
     button.addEventListener("click", event => {
       modal.style.display = "flex";
     });
@@ -31,8 +33,8 @@ const modalFunctionality = (modal, close, button) => {
 try {
   modalFunctionality(
     addMedicineModal,
-    addMedicineButton,
-    addMedicineModalClose
+    addMedicineModalClose,
+    addMedicineButton
   );
   modalFunctionality(editMedicineModal, editMedicineModalClose);
 } catch (error) {}

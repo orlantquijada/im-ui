@@ -219,11 +219,23 @@
           }
           &.menu {
             grid-area: menu;
+
             cursor: pointer;
 
+            @include flexbox;
+
             & img {
-              height: 10px;
-              width: 10px;
+              width: 25px;
+              height: 25px;
+
+              transition: all 200ms ease;
+            }
+
+            &:hover {
+              img {
+                width: 40px;
+                height: 40px;
+              }
             }
           }
         }
