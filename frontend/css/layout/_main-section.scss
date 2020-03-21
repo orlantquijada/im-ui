@@ -25,6 +25,18 @@
       flex-grow: 1;
       @include flexbox($justify: flex-start);
 
+      .btn {
+        border: none;
+        background: none;
+        padding: 0;
+
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
       &__logo {
         margin-right: 1em;
         transform: scaleX(-1);
@@ -37,6 +49,7 @@
       &__name {
         width: 80%;
 
+        outline: none;
         border: none;
         outline: none;
 
@@ -145,6 +158,7 @@
         transition: width 500ms ease;
 
         margin: 0 auto;
+        padding-right: 1em;
 
         background-color: #ffffff;
         border-radius: 1em;
@@ -199,6 +213,10 @@
             grid-area: price;
           }
           &.button {
+            grid-area: button;
+          }
+          &.menu {
+            grid-area: menu;
             cursor: pointer;
             outline: none;
             border: none;
@@ -213,4 +231,9 @@
       }
     }
   }
+}
+
+.reset-button {
+  border: none;
+  background-color: white;
 }

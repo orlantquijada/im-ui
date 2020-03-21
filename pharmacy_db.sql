@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2020 at 03:07 PM
+-- Generation Time: Mar 20, 2020 at 03:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -52,6 +52,8 @@ INSERT INTO `employee` (`id`, `username`, `password`, `branch_name`, `name`, `co
 
 CREATE TABLE `medicine` (
   `id` int(11) NOT NULL,
+  `branch_name` varchar(100) NOT NULL DEFAULT '',
+  `company` varchar(100) NOT NULL,
   `generic_name` varchar(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL,
   `dosage` varchar(30) NOT NULL,
@@ -154,7 +156,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ordered_item`
@@ -166,7 +168,7 @@ ALTER TABLE `ordered_item`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

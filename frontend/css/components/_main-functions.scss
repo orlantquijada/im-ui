@@ -1,0 +1,26 @@
+.main-functions {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+
+  border-radius: 2em;
+
+  @include flexbox($direction: column, $justify: space-between);
+  &__function {
+    cursor: pointer;
+    margin: 0.5em 1em;
+
+    height: 4em;
+    width: 4em;
+
+    border-radius: 50%;
+    background-color: $main-purple;
+
+    @include flexbox;
+
+    img {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+}
