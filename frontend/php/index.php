@@ -151,7 +151,7 @@ if ($row == NULL) {
       </section>
       <section class="right-side-bar__mid">
         <div class="right-side-bar__mid__transaction">
-          <h1 class="name">Transaction:</h1>
+          <h1 class="name">Transaction Number :</h1>
           <?php
           $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $result = mysqli_query($con, $sql);
@@ -231,7 +231,12 @@ if ($row == NULL) {
           ?>
         </section>
 
-        
+        <a href='index.php?pay=1'>
+          <button class="pay-total">
+            <h1>Pay</h1>
+          </button>
+        </a>
+
       </section>
     </section>
 
@@ -252,18 +257,35 @@ if ($row == NULL) {
     $is_edit = false;
 
     if (isset($_POST['addComplete'])) {
-      $medicine_id = $_POST['medicineId'];
-      $items_purchased = $_POST['itemsPurchased'];
-      $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";
-      $result = mysqli_query($con, $sql);
+      $medicine_id = $_POST['medicineId'];  //get medicine_id
+      $items_purchased = $_POST['itemsPurchased'];  //get items purchased
+      $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
+      $result = mysqli_query($con, $sql); 
       $row = mysqli_fetch_array($result);
-      if ($row['quantity'] < $items_purchased) {
+      if ($row['quantity'] < $items_purchased) {  //if quantity exceeds, alert box
         echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
       } else {
-        $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
-        $insert_order = mysqli_query($con, $add_purchase);
+        $check_duplicate = "SELECT * FROM ordered_item WHERE medicine_id = '$medicine_id'";  //checking for duplicate
+        $result = mysqli_query($con, $check_duplicate);
+        $row = mysqli_fetch_array($result);
 
-        $diff = $row['quantity'] - $items_purchased;
+        if ($row != NULL) { //if there's a duplicate
+          $get_quantity = "SELECT quantity FROM ordered_item WHERE medicine_id = '$medicine_id'"; //get quantity of existing order
+          $result = mysqli_query($con, $get_quantity);
+          $row = mysqli_fetch_array($result);
+          $new_quantity = $row['quantity'] + $items_purchased; //set new quantity
+          $update_purchase = "UPDATE ordered_item SET quantity = '$new_quantity' WHERE transaction_id = '$transaction_id'";
+          $result = mysqli_query($con, $update_purchase);
+        }
+        else{
+          $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";  //add new ordered item
+          $insert_order = mysqli_query($con, $add_purchase);
+        }
+
+        $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($result);
+        $diff = $row['quantity'] - $items_purchased;  //update medicine quantity
         $update_quantity = "UPDATE medicine SET quantity = '$diff' WHERE id = '$medicine_id'";
         $update_query = mysqli_query($con, $update_quantity);
         echo "<meta http-equiv='refresh' content='0'>";
@@ -331,7 +353,7 @@ if ($row == NULL) {
             <form action='index.php' method='POST'>
               <div class='form__main__form-item'>
                 <h1 class='title'>Quantity :</h1>
-                <input type='text' class='input' name='itemsPurchased' />
+                <input type='text' class='input' name='itemsPurchased' autofocus/>
               </div>
               
               <div class='buttons'>
