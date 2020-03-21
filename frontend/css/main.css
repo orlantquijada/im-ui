@@ -291,10 +291,10 @@ ul {
 .main .table__header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.4fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.4fr;
+  -ms-grid-columns: 1fr 1.2fr 0.6fr 1.5fr 0.5fr;
+      grid-template-columns: 1fr 1.2fr 0.6fr 1.5fr 0.5fr;
       grid-template-areas: "generic brand company dosage price";
-  width: 90%;
+  width: 95%;
   margin: 0 auto 1em auto;
   justify-items: center;
   -webkit-box-align: center;
@@ -366,8 +366,8 @@ ul {
   cursor: default;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
+  -ms-grid-columns: 1fr 1.2fr 0.6fr 1.5fr 0.5fr;
+      grid-template-columns: 1fr 1.2fr 0.6fr 1.5fr 0.5fr;
       grid-template-areas: "generic brand company dosage price";
   justify-items: center;
   -webkit-box-align: center;
@@ -382,40 +382,20 @@ ul {
   border-radius: 1em;
 }
 
-.main .table__body__card--unavailable {
-  cursor: default;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
-      grid-template-columns: 0.5fr 1.2fr 1fr 1.5fr 0.5fr 0.5fr;
-      grid-template-areas: "generic brand company dosage price";
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 95%;
-  height: 60px;
-  -webkit-transition: width 500ms ease;
-  transition: width 500ms ease;
-  margin: 0 auto;
-  background-color: #EEE2E2;
-  border-radius: 1em;
-}
-
-.main .table__body__card--unavailable:hover {
-  background-color: #EEE2E2;
-  cursor: pointer;
-  width: 92%;
-  height: 70px;
-  margin: 5px auto;
-}
-
 .main .table__body__card:hover {
   background-color: #f9fafe;
   cursor: pointer;
   width: 92%;
   height: 70px;
   margin: 5px auto;
+}
+
+.main .table__body__card--unavailable {
+  background-color: #eee2e2;
+}
+
+.main .table__body__card--unavailable:hover {
+  background-color: #eddcdc;
 }
 
 .main .table__body__card__item {
@@ -468,7 +448,7 @@ ul {
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: .8em;
+  border-radius: 0.8em;
   grid-area: button;
   background-color: #6646eb;
   width: 7em;
