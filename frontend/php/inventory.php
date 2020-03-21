@@ -124,7 +124,7 @@
           <img src="../static/hamburger.svg" class="left-side-bar__top__menu" />
         </section>
         <section class="left-side-bar__mid">
-          <a href="index.html" class="left-side-bar__mid__function">
+          <a href="index.php" class="left-side-bar__mid__function">
             <img
               src="../static/checklist.svg"
               class="left-side-bar__mid__function__logo"
@@ -141,22 +141,6 @@
               class="left-side-bar__mid__function__logo"
             />
             <h1 class="left-side-bar__mid__function__name">Inventory</h1>
-          </a>
-
-          <a href="#" class="left-side-bar__mid__function">
-            <img
-              src="../static/feedback.svg"
-              class="left-side-bar__mid__function__logo"
-            />
-            <h1 class="left-side-bar__mid__function__name">Messages</h1>
-          </a>
-
-          <a href="#" class="left-side-bar__mid__function">
-            <img
-              src="../static/adjust.svg"
-              class="left-side-bar__mid__function__logo"
-            />
-            <h1 class="left-side-bar__mid__function__name">Settings</h1>
           </a>
         </section>
       </div>
@@ -228,7 +212,7 @@
                   
                   echo 
                   "
-                <div class='table__body__card' id='{$id}'>
+                <div class='table__body__card inventory' id='{$id}'>
                   <div class='table__body__card__item generic'>
                     <h1 class='name'>{$row['generic_name']}</h1>
                   </div>

@@ -149,6 +149,11 @@
         grid-template-columns: $checkout-grid-template-fractions;
         grid-template-areas: "generic brand company dosage price";
 
+        &.inventory {
+          grid-template-columns: $grid-table-fractions;
+          grid-template-areas: "generic brand company dosage price menu";
+        }
+
         justify-items: center;
         align-items: center;
 
@@ -212,20 +217,14 @@
           &.price {
             grid-area: price;
           }
-          &.button {
-            grid-area: button;
-          }
           &.menu {
             grid-area: menu;
             cursor: pointer;
-            outline: none;
-            border: none;
-            border-radius: 0.8em;
-            grid-area: button;
-            background-color: $main-purple;
-            width: 7em;
-            height: 3em;
-            color: white;
+
+            & img {
+              height: 10px;
+              width: 10px;
+            }
           }
         }
       }

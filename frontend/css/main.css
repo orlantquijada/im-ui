@@ -397,6 +397,12 @@ ul {
   border-radius: 1em;
 }
 
+.main .table__body__card.inventory {
+  -ms-grid-columns: 1.2fr 1fr 1.2fr 1fr 0.5fr 1fr 0.3fr;
+      grid-template-columns: 1.2fr 1fr 1.2fr 1fr 0.5fr 1fr 0.3fr;
+      grid-template-areas: "generic brand company dosage price menu";
+}
+
 .main .table__body__card:hover {
   background-color: #f9fafe;
   cursor: pointer;
@@ -459,23 +465,16 @@ ul {
   grid-area: price;
 }
 
-.main .table__body__card__item.button {
-  grid-area: button;
-}
-
 .main .table__body__card__item.menu {
   -ms-grid-row: 1;
   -ms-grid-column: 7;
   grid-area: menu;
   cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 0.8em;
-  grid-area: button;
-  background-color: #6646eb;
-  width: 7em;
-  height: 3em;
-  color: white;
+}
+
+.main .table__body__card__item.menu img {
+  height: 10px;
+  width: 10px;
 }
 
 .reset-button {
