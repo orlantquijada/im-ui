@@ -48,6 +48,28 @@ if ($row == NULL) {
     </section>
 
     <section class="main">
+      <form action="inventory.php" method="GET" class="search">
+        <div class="search__main">
+          <button type="submit" name="searchSubmit" class="btn" value=1>
+            <img src="../static/search.svg" class="search__main__logo" />
+          </button>
+          <input type="search" name="search" class="search__main__name" placeholder="Search" />
+        </div>
+        <h1 class="search__results-count">
+          <?php
+          if (isset($_GET['searchSubmit']) && isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $search_count_sql = "SELECT COUNT(*) AS total FROM medicine WHERE generic_name LIKE '%{$search}%'";
+
+            $search_count = mysqli_fetch_assoc(mysqli_query($con, $search_count_sql));
+
+            echo $search_count['total'];
+            echo $search_count['total'] == '1' ? ' result' : ' results';
+          }
+          ?>
+        </h1>
+      </form>
+
       <div class="table">
         <section class="table__header">
           <div class="table__header__item generic">
@@ -208,51 +230,49 @@ if ($row == NULL) {
         <form action='index.php' method='post'>
           <div class="pay-transaction">
             <h1 class="title">Enter payment:</h1>
-            <input type='text' class='input-payment' name='payment'tabIndex=2 />
-          </div>  
+            <input type='text' class='input-payment' name='payment' tabIndex=2 />
+          </div>
           <button type='submit' class="pay-total" name='payTransaction'>
             <h1>Pay</h1>
           </button>
         </form>
         <?php
-          if(isset($_POST['payTransaction'])){
-            if(empty($_POST['payment'])){
-              echo "<script language='Javascript'>alert('Must input payment!')</script>";
-            }
-            else{
-              $payment = $_POST['payment'];
+        if (isset($_POST['payTransaction'])) {
+          if (empty($_POST['payment'])) {
+            echo "<script language='Javascript'>alert('Must input payment!')</script>";
+          } else {
+            $payment = $_POST['payment'];
 
-              $get_transaction = "SELECT * FROM transaction WHERE is_payed = false";
-              $result = mysqli_query($con, $sql);
-              $row = mysqli_fetch_array($result);
-              
-              if($payment < $row['total']){
-                echo "<script language='Javascript'>alert('Insufficient payment!')</script>";
-              }
-              else{
-                $insert_payment = "UPDATE transaction SET payment = '$payment'";
-                $result = mysqli_query($con, $insert_payment);
+            $get_transaction = "SELECT * FROM transaction WHERE is_payed = false";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_array($result);
 
-                $get_change = "SELECT total FROM transaction WHERE is_payed = false";
+            if ($payment < $row['total']) {
+              echo "<script language='Javascript'>alert('Insufficient payment!')</script>";
+            } else {
+              $insert_payment = "UPDATE transaction SET payment = '$payment'";
+              $result = mysqli_query($con, $insert_payment);
 
-                $change = $payment - $row['total'];
+              $get_change = "SELECT total FROM transaction WHERE is_payed = false";
 
-                $update_payed = "UPDATE transaction SET is_payed = true WHERE is_payed = false";
-                $result = mysqli_query($con, $update_payed);
+              $change = $payment - $row['total'];
 
-                $sql = "SELECT * FROM transaction WHERE is_payed = false";
-                $check_transaction = mysqli_query($con, $sql);
-                $row = mysqli_fetch_array($check_transaction);
-                echo
+              $update_payed = "UPDATE transaction SET is_payed = true WHERE is_payed = false";
+              $result = mysqli_query($con, $update_payed);
+
+              $sql = "SELECT * FROM transaction WHERE is_payed = false";
+              $check_transaction = mysqli_query($con, $sql);
+              $row = mysqli_fetch_array($check_transaction);
+              echo
                 "
                 <section class='total'>
                   <h1 class='name'>CHANGE : </h1>
-                  <h1 class='number' style='padding-top: 10px;'>".money($change)."</h1>
+                  <h1 class='number' style='padding-top: 10px;'>" . money($change) . "</h1>
                 </section>
                 ";
-              }
             }
           }
+        }
         ?>
 
 
@@ -269,8 +289,8 @@ if ($row == NULL) {
 
     if (isset($_POST['addComplete'])) {
       $medicine_id = $_POST['medicineId'];  //get medicine_id
-      if(empty($_POST['itemsPurchased'])){
-        echo "<script language='Javascript'>alert('Invalid input!')</script>"; 
+      if (empty($_POST['itemsPurchased'])) {
+        echo "<script language='Javascript'>alert('Invalid input!')</script>";
       }
       $items_purchased = $_POST['itemsPurchased'];  //get items purchased
       $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
@@ -284,7 +304,7 @@ if ($row == NULL) {
         $row = mysqli_fetch_array($result);
 
         if ($row != NULL) { //if there's a duplicate
-          $get_quantity = "SELECT quantity FROM ordered_item WHERE medicine_id = '$medicine_id'"; //get quantity of existing order
+          $get_quantity = "SELECT quantity FROM ordered_item WHERE medicine_id = '$medicine_id' AND transaction_id = '$transaction_id'"; //get quantity of existing order
           $result = mysqli_query($con, $get_quantity);
           $row = mysqli_fetch_array($result);
           $new_quantity = $row['quantity'] + $items_purchased; //set new quantity
