@@ -49,6 +49,28 @@ if ($row == NULL) {
     </section>
 
     <section class="main">
+      <form action="inventory.php" method="GET" class="search">
+        <div class="search__main">
+          <button type="submit" name="searchSubmit" class="btn" value=1>
+            <img src="../static/search.svg" class="search__main__logo" />
+          </button>
+          <input type="search" name="search" class="search__main__name" placeholder="Search" />
+        </div>
+        <h1 class="search__results-count">
+          <?php
+          if (isset($_GET['searchSubmit']) && isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $search_count_sql = "SELECT COUNT(*) AS total FROM medicine WHERE generic_name LIKE '%{$search}%'";
+
+            $search_count = mysqli_fetch_assoc(mysqli_query($con, $search_count_sql));
+
+            echo $search_count['total'];
+            echo $search_count['total'] == '1' ? ' result' : ' results';
+          }
+          ?>
+        </h1>
+      </form>
+
       <div class="table">
         <section class="table__header">
           <div class="table__header__item generic">
@@ -134,15 +156,15 @@ if ($row == NULL) {
           $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $result = mysqli_query($con, $sql);
           $row = mysqli_fetch_array($result);
-          echo "<h1 class='number'>".$row['id']."</h1>";
+          echo "<h1 class='number'>" . str_pad($row['id'], 10, '0', STR_PAD_LEFT) . "</h1>";
           ?>
-          
+
         </div>
         <div class="line"></div>
       </section>
       <section class="right-side-bar__bot">
         <section class="table">
-        <?php
+          <?php
           $sql = "SELECT id FROM transaction WHERE is_payed = false";
           $check_transaction = mysqli_query($con, $sql);
           $row = mysqli_fetch_assoc($check_transaction);
@@ -152,27 +174,30 @@ if ($row == NULL) {
           $sql = "SELECT M.brand_name, M.dosage, O.quantity, M.price FROM medicine as M, ordered_item as O, transaction as T where O.medicine_id = M.id and O.transaction_id = '$transaction_id'";
 
           $result = mysqli_query($con, $sql);
-          while($row = mysqli_fetch_array($result)){
+          while ($row = mysqli_fetch_array($result)) {
             $price = $row['price'] * $row['quantity'];
-            echo 
-            "
+            $total_price += $price;
+            echo
+              "
             <div class='table__card'>
                 <div class='table__card__item name'>
-                  <h1>".$row['brand_name']." ".$row['dosage']."</h1>
+                  <h1>" . $row['brand_name'] . " " . $row['dosage'] . "</h1>
                 </div>
                 <div class='table__card__item piece'>
-                  <h1>".$row['quantity']."PC</h1>
+                  <h1>" . $row['quantity'] . "PC</h1>
                 </div>
                 <div class='table__card__item price'>
-                  <h1>".money($row['price'])."</h1>
+                  <h1>" . money($row['price']) . "</h1>
                 </div>
                 <div class='table__card__item total'>
-                  <h1>".money($price)."</h1>
+                  <h1>" . money($price) . "</h1>
                 </div>
               </div>
             ";
-
           }
+
+          $update_total = "UPDATE transaction SET total = $total_price WHERE id = '$transaction_id'";
+          $result = mysqli_query($con, $update_total);
           ?>
         </section>
 
@@ -181,78 +206,90 @@ if ($row == NULL) {
             <h1 class="name">TOTAL ITEMS:</h1>
             <?php
             $sql = "SELECT COUNT(*) FROM ordered_item WHERE ordered_item.transaction_id = '$transaction_id'";
-            $result = mysqli_query($con,$sql);
+            $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_array($result);
 
-            echo "<h2 class='number'>".$row[0]."</h2>";
+            echo "<h2 class='number'>" . $row[0] . "</h2>";
             ?>
-            
-            
+
+
           </div>
         </section>
         <div class="line--broken"></div>
         <section class="total">
           <h1 class="name">TOTAL:</h1>
+          <?php
+          $sql = "SELECT id FROM transaction WHERE is_payed = false";
+          $check_transaction = mysqli_query($con, $sql);
+          $row = mysqli_fetch_assoc($check_transaction);
+          $transaction_id = $row['id'];
+
+          $sql = "SELECT total FROM transaction WHERE id = '$transaction_id'";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_assoc($result);
+          echo "<h1 class='number'>" . money($row['total']) . "</h1>";
+          ?>
         </section>
+
+        
       </section>
     </section>
 
     <!-- Add Modal Section -->
-     
-      <?php
-        $generic_name = "";
-        $company_name = "";
-        $brand_name = "";
-        $quantity = "";
-        $dosage = "";
-        $price = "";
 
-        $sql = "SELECT id FROM transaction WHERE is_payed = false";
-        $check_transaction = mysqli_query($con, $sql);
-        $row = mysqli_fetch_assoc($check_transaction);
-        $transaction_id = $row['id'];
-        $is_edit = false;
+    <?php
+    $generic_name = "";
+    $company_name = "";
+    $brand_name = "";
+    $quantity = "";
+    $dosage = "";
+    $price = "";
 
-        if(isset($_POST['addComplete'])){
-          $medicine_id = $_POST['medicineId'];
-          $items_purchased = $_POST['itemsPurchased'];
-          $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";
-          $result = mysqli_query($con, $sql);
-          $row = mysqli_fetch_array($result);
-          if($row['quantity'] < $items_purchased){
-            echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
-          }
-          else{
-          $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
-          $insert_order = mysqli_query($con, $add_purchase);
+    $sql = "SELECT id FROM transaction WHERE is_payed = false";
+    $check_transaction = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($check_transaction);
+    $transaction_id = $row['id'];
+    $is_edit = false;
 
-          $diff = $row['quantity'] - $items_purchased;
-          $update_quantity = "UPDATE medicine SET quantity = '$diff' WHERE id = '$medicine_id'";
-          $update_query = mysqli_query($con, $update_quantity);
-          echo "<meta http-equiv='refresh' content='0'>";
-          }
-        }
+    if (isset($_POST['addComplete'])) {
+      $medicine_id = $_POST['medicineId'];
+      $items_purchased = $_POST['itemsPurchased'];
+      $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";
+      $result = mysqli_query($con, $sql);
+      $row = mysqli_fetch_array($result);
+      if ($row['quantity'] < $items_purchased) {
+        echo "<script language='Javascript'>alert('Numbers exceeded!')</script>";
+      } else {
+        $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";
+        $insert_order = mysqli_query($con, $add_purchase);
 
-        if (isset($_GET['edit'])) {
-          $is_edit = (bool)$_GET['edit'];
-        }
+        $diff = $row['quantity'] - $items_purchased;
+        $update_quantity = "UPDATE medicine SET quantity = '$diff' WHERE id = '$medicine_id'";
+        $update_query = mysqli_query($con, $update_quantity);
+        echo "<meta http-equiv='refresh' content='0'>";
+      }
+    }
 
-       
-        if ($is_edit) {
-          $id_to_edit = $_GET['id'];
-          $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
-          $medicine_instance = mysqli_query($con, $sql_edit);
+    if (isset($_GET['edit'])) {
+      $is_edit = (bool) $_GET['edit'];
+    }
 
-          $row = mysqli_fetch_assoc($medicine_instance);
-        
-          $generic_name = $row["generic_name"];
-          $company_name = $row["company"];
-          $brand_name = $row["brand_name"];
-          $quantity = $row["quantity"];
-          $dosage = $row["dosage"];
-          $price = money($row["price"]);
-          echo
-          "
+
+    if ($is_edit) {
+      $id_to_edit = $_GET['id'];
+      $sql_edit = "SELECT * FROM medicine WHERE id={$id_to_edit} LIMIT 1";
+      $medicine_instance = mysqli_query($con, $sql_edit);
+
+      $row = mysqli_fetch_assoc($medicine_instance);
+
+      $generic_name = $row["generic_name"];
+      $company_name = $row["company"];
+      $brand_name = $row["brand_name"];
+      $quantity = $row["quantity"];
+      $dosage = $row["dosage"];
+      $price = money($row["price"]);
+      echo
+        "
           <div class='modal modal--show' class='MedicineModal' id='addMedicineModalCheckout'>
         <div class='medicineModal'>
           <div class='header'>
@@ -310,7 +347,6 @@ if ($row == NULL) {
         </div>
       </div>
           ";
-
     }
     ?>
     <!-- End of Modal -->
