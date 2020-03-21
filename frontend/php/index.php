@@ -11,9 +11,13 @@ $check_transaction = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($check_transaction);
 if ($row == NULL) {
   $sql = "INSERT INTO transaction (employee_id) VALUES ('1')";
-  $result = mysqli_query($con, $sql) or die;
-  $row = mysqli_fetch_array($result);
+  $result = mysqli_query($con, $sql);
+  $sql = "SELECT * FROM transaction WHERE is_payed = false";
+  header("index.php");
+  
 }
+$check_transaction = mysqli_query($con, $sql);
+  $row = mysqli_fetch_array($check_transaction);
 ?>
 
 <!DOCTYPE html>
@@ -49,28 +53,6 @@ if ($row == NULL) {
     </section>
 
     <section class="main">
-      <form action="inventory.php" method="GET" class="search">
-        <div class="search__main">
-          <button type="submit" name="searchSubmit" class="btn" value=1>
-            <img src="../static/search.svg" class="search__main__logo" />
-          </button>
-          <input type="search" name="search" class="search__main__name" placeholder="Search" />
-        </div>
-        <h1 class="search__results-count">
-          <?php
-          if (isset($_GET['searchSubmit']) && isset($_GET['search'])) {
-            $search = $_GET['search'];
-            $search_count_sql = "SELECT COUNT(*) AS total FROM medicine WHERE generic_name LIKE '%{$search}%'";
-
-            $search_count = mysqli_fetch_assoc(mysqli_query($con, $search_count_sql));
-
-            echo $search_count['total'];
-            echo $search_count['total'] == '1' ? ' result' : ' results';
-          }
-          ?>
-        </h1>
-      </form>
-
       <div class="table">
         <section class="table__header">
           <div class="table__header__item generic">
@@ -92,7 +74,6 @@ if ($row == NULL) {
 
         <section class="table__body">
           <?php
-          $con = mysqli_connect("localhost", "root", "", "pharmacy_db");
           $sql = "SELECT * FROM medicine";
           $result = mysqli_query($con, $sql);
           $print = "";
@@ -106,7 +87,7 @@ if ($row == NULL) {
               echo
                 "
                 <a href='index.php?edit=1&id=" . $row['id'] . "'>
-                <div class='table__body__card' onclick>
+                <div class='table__body__card'>
                 ";
             }
             echo
@@ -230,10 +211,48 @@ if ($row == NULL) {
           echo "<h1 class='number'>" . money($row['total']) . "</h1>";
           ?>
         </section>
+        <form action='index.php' method='post'>
+          <div class="pay-transaction">
+            <h1 class="title">Enter payment:</h1>
+            <input type='text' class='input-payment' name='payment'tabIndex=2 />
+          </div>
+          <button type='submit' class="pay-total" name='payTransaction'>
+            <h1>Pay</h1>
+          </button>
+        </form>
+        <?php
+          if(isset($_POST['payTransaction'])){
+            if(empty($_POST['payment'])){
+              echo "<script language='Javascript'>alert('Must input payment!')</script>";
+            }
+            else{
+              $payment = $_POST['payment'];
 
-        <button class="pay-total">
-          <h1>Pay</h1>
-        </button>
+              $get_transaction = "SELECT * FROM transaction WHERE is_payed = false";
+              $result = mysqli_query($con, $sql);
+              $row = mysqli_fetch_array($result);
+              
+              if($payment < $row['total']){
+                echo "<script language='Javascript'>alert('Insufficient payment!')</script>";
+              }
+              else{
+                $insert_payment = "UPDATE transaction SET payment = '$payment'";
+                $result = mysqli_query($con, $insert_payment);
+
+                $get_change = "SELECT total FROM transaction WHERE is_payed = false";
+
+                $change = $payment - $row['total'];
+
+                $update_payed = "UPDATE transaction SET is_payed = true WHERE is_payed = false";
+                $result = mysqli_query($con, $update_payed);
+
+                echo "<meta http-equiv='refresh' content='0'>";
+
+              }
+            }
+          }
+        ?>
+
 
       </section>
     </section>
@@ -241,21 +260,16 @@ if ($row == NULL) {
     <!-- Add Modal Section -->
 
     <?php
-    $generic_name = "";
-    $company_name = "";
-    $brand_name = "";
-    $quantity = "";
-    $dosage = "";
-    $price = "";
-
     $sql = "SELECT id FROM transaction WHERE is_payed = false";
     $check_transaction = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($check_transaction);
-    $transaction_id = $row['id'];
     $is_edit = false;
 
     if (isset($_POST['addComplete'])) {
       $medicine_id = $_POST['medicineId'];  //get medicine_id
+      if(empty($_POST['itemsPurchased'])){
+        echo "<script language='Javascript'>alert('Invalid input!')</script>"; 
+      }
       $items_purchased = $_POST['itemsPurchased'];  //get items purchased
       $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
       $result = mysqli_query($con, $sql);
@@ -272,7 +286,7 @@ if ($row == NULL) {
           $result = mysqli_query($con, $get_quantity);
           $row = mysqli_fetch_array($result);
           $new_quantity = $row['quantity'] + $items_purchased; //set new quantity
-          $update_purchase = "UPDATE ordered_item SET quantity = '$new_quantity' WHERE transaction_id = '$transaction_id'";
+          $update_purchase = "UPDATE ordered_item SET quantity = '$new_quantity' WHERE medicine_id = '$medicine_id'";
           $result = mysqli_query($con, $update_purchase);
         } else {
           $add_purchase = "INSERT INTO ordered_item (transaction_id, medicine_id, quantity) VALUES ('$transaction_id', '$medicine_id', '$items_purchased')";  //add new ordered item
@@ -318,7 +332,7 @@ if ($row == NULL) {
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' value='{$generic_name}'/>
+                <input type='text' class='input' name='genericNameAdd' value='{$transaction_id}'/>
               </div>
               
               <div class='form__main__form-item'>
