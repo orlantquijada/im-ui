@@ -78,7 +78,7 @@ if ($row == NULL) {
             if ($row['quantity'] <= 0) {
               echo
                 "
-              <div class='table__body__card--unavailable' onclick = 'return unavailable()'>
+              <div class='table__body__card table__body__card--unavailable' onclick = 'return unavailable()'>
                 ";
             } else {
               echo
@@ -277,6 +277,7 @@ if ($row == NULL) {
         echo "<script language='Javascript'>alert('Invalid input!')</script>"; 
       }
       $items_purchased = $_POST['itemsPurchased'];  //get items purchased
+      echo $items_purchased;
       $check_quantity = $sql = "SELECT quantity FROM medicine WHERE id='$medicine_id'";  //checks the quantity of the medicine
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_array($result);
@@ -338,32 +339,32 @@ if ($row == NULL) {
             <div class='form__main' >
               <div class='form__main__form-item'>
                 <h1 class='title'>Generic Name :</h1>
-                <input type='text' class='input' name='genericNameAdd' value='{$transaction_id}'/>
+                <input type='text' class='input' name='genericNameAdd' value='{$transaction_id}' readonly/>
               </div>
               
               <div class='form__main__form-item'>
                 <h1 class='title'>Company Name :</h1>
-                <input type='text' class='input' name='companyNameAdd' value='{$company_name}'/>
+                <input type='text' class='input' name='companyNameAdd' value='{$company_name}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Brand Name :</h1>
-                <input type='text' class='input' name='brandNameAdd' value='{$brand_name}'/>
+                <input type='text' class='input' name='brandNameAdd' value='{$brand_name}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Dosage :</h1>
-                <input type='text' class='input' name='dosageAdd' value='{$dosage}'/>
+                <input type='text' class='input' name='dosageAdd' value='{$dosage}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Price :</h1>
-                <input type='text' class='input' name='priceAdd' value='{$price}'/>
+                <input type='text' class='input' name='priceAdd' value='{$price}' readonly/>
               </div>
 
               <div class='form__main__form-item'>
                 <h1 class='title'>Stocks Available :</h1>
-                <input type='text' class='input' name='quantityAdd' value='{$quantity}'/>
+                <input type='text' class='input' name='quantityAdd' value='{$quantity}' readonly/>
               </div>
             </div>
 
@@ -390,7 +391,7 @@ if ($row == NULL) {
     ?>
     <!-- End of Modal -->
   </div>
-  <div class='pat' <script src="../js/modal.js">
+  <script src="../js/modal.js">
     </script>
     <script language="Javascript">
       function unavailable() {
