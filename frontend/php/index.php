@@ -48,7 +48,7 @@ if ($row == NULL) {
     </section>
 
     <section class="main">
-      <form action="inventory.php" method="GET" class="search">
+      <form action="index.php" method="GET" class="search">
         <div class="search__main">
           <button type="submit" name="searchSubmit" class="btn" value=1>
             <img src="../static/search.svg" class="search__main__logo" />
@@ -92,6 +92,12 @@ if ($row == NULL) {
         <section class="table__body">
           <?php
           $sql = "SELECT * FROM medicine";
+
+          if (isset($_GET['searchSubmit']) && isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $sql = "SELECT * FROM medicine WHERE generic_name LIKE '%{$search}%'";
+          }
+          
           $result = mysqli_query($con, $sql);
           $print = "";
           while ($row = mysqli_fetch_array($result)) {
